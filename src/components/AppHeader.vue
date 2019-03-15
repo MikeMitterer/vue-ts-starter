@@ -5,7 +5,9 @@
             <router-link to="/about">About</router-link>
         </nav>
         <div class="demo_images">
-            <img class="cat" src="../assets/images/static/cat.jpg">
+            <img class="cat" style="position: absolute;"
+                 v-bind:style="{ left: counter + 'px' }"
+                 src="../assets/images/static/cat.jpg">
             <img id="frontImg" :src="img"/>
         </div>
     </div>
@@ -14,6 +16,7 @@
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
     import lambi from '../assets/images/lambi.png';
+    import counter from '../store/modules/CounterModule';
 
     @Component
     export default class AppHeader extends Vue {
@@ -21,6 +24,10 @@
 
         get img(): string {
             return lambi;
+        }
+
+        public get counter() {
+            return Math.min(500, Math.max(110, counter.count));
         }
     }
 </script>
