@@ -8,7 +8,7 @@ In `.env` is the title define - check it out.
 
 'Click' modifies and displays text in the lower right
 
-The cat on the top right is add statically, the Lamborghini is added dynamically in the component.  
+The cat on the top right is add statically, the Lamborghini is added dynamically. (AppHeader component)  
 
 ![Screenshot](doc/screenshot.png)       
 
