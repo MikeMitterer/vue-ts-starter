@@ -1,0 +1,51 @@
+pipeline {
+    agent {
+        label 'linux'
+    }
+    stages {
+        stage('Preparation') {
+            steps {
+                timeout(time: 15, unit: 'MINUTES') {
+                    ansiColor('xterm') {
+                        sh 'yarn'
+
+                        // Repos von Amazon holen
+                        // sh 'docker/_ci/run.sh --pull'
+
+                        // Docker für die Integration-Tests starten
+                        // sh 'docker/_ci/run.sh --start'
+                    }
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                ansiColor('xterm') {
+                    sh 'yarn run test'
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                timeout(time: 15, unit: 'MINUTES') {
+                    ansiColor('xterm') {
+                        // sh 'yarn run clean'
+                        sh 'yarn run deploy'
+                        // sh 'yarn run deploy:node'
+                        // sh 'yarn run deploy:web:prod'
+                    }
+                }
+
+            }
+        }
+    }
+
+    // post {
+    //     always {
+    //         ansiColor('xterm') {
+    //             sh 'docker/_ci/run.sh --stop'
+    //         }
+    //     }
+    // }
+
+}
