@@ -9,6 +9,7 @@ class CounterModule extends VuexModule {
     public increment(delta: number) {
         this.count += delta;
     }
+
     @Mutation
     public decrement(delta: number) {
         this.count -= delta;
