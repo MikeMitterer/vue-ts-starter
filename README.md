@@ -12,8 +12,21 @@ The cat on the top right is add statically, the Lamborghini is added dynamically
 
 For State Management I added a "CounterModule" (Vuex)  
 
-![Screenshot](doc/screenshot.png)       
+![Screenshot](doc/screenshot.png)      
 
+## Environment-Vars and Template-Vars
+
+These vars are set in `vue.config.js`
+ 
+If you want to see how you can use e.g. `process.env.VUE_APP_VERSION` check out `AppFooter.vue`
+
+`/public/index.html` tests if VUE_APP_DEV_MODE is set to true:
+```html
+...
+<html lang="en" <%if(VUE_APP_DEV_MODE){%>devmode="true"<%}%>>
+...
+
+``` 
 
 ## Project setup
 ```

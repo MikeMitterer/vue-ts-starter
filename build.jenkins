@@ -39,7 +39,7 @@ pipeline {
             steps {
                 timeout(time: 15, unit: 'MINUTES') {
                     ansiColor('xterm') {
-                        sh 'yarn run build'
+                        sh 'yarn run build:prod'
                     }
                 }
 

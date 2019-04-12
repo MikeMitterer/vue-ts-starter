@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" <%if(VUE_APP_DEV_MODE){%>devmode="true"<%}%>>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +8,6 @@
     <title><%= VUE_APP_TITLE %></title>
   </head>
   <body>
-    <%if(devmode){%>I am in DEV-Mode<%}%>
     <noscript>
       <strong>We're sorry but '<%= VUE_APP_TITLE %>' doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>

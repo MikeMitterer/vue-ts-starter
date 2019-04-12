@@ -6,17 +6,15 @@
             <span id="app">Loading... / {{title_inc || title}}</span>
         </div>
         <div>
-            <!--<div class="version_block">-->
-                <!--<span class="version">Version <%= version %></span>-->
-                <!--<span class="separator">/</span>-->
-                <!--<span class="published"><%= published %></span>-->
-                <!--<span class="separator">/</span>-->
-            <!--</div>-->
-            <!--<% if(devmode) { %>-->
-            <!--<span class="devmode">DevMode</span>-->
-            <!--<% } else { %>-->
-            <!--<span class="production">Production</span>-->
-            <!--<% } %>-->
+
+            <div class="version_block">
+                <span class="version">Version {{version}}</span>
+                <span class="separator">/</span>
+                <span class="published">{{published}}</span>
+                <span class="separator">/</span>
+            </div>
+            <span v-if="devmode" class="devmode">DevMode</span>
+            <span v-else class="production">Production</span>
         </div>
 
     </footer>
@@ -45,6 +43,10 @@
         }
 
         public get title_inc(): string { return this.anotherTitle; }
+
+        public get published(): string { return process.env.VUE_APP_PUBLISHED; }
+        public get version(): string { return process.env.VUE_APP_VERSION; }
+        public get devmode(): boolean { return process.env.VUE_APP_DEV_MODE; }
     }
     
 </script>
