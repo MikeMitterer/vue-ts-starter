@@ -7,7 +7,7 @@ pipeline {
     environment { SRC_CHANGED=true }
 
     parameters {
-        booleanParam(defaultValue: false, description: 'Publishes the module to NPMJS', name: 'PUBLISH_TO_NMP')
+        booleanParam(defaultValue: false, description: 'Publishes to TestServer', name: 'PUBLISH_TO_TESTSERVER')
     }
     
     stages {
@@ -51,7 +51,11 @@ pipeline {
         }
 
         stage('Deploy') {
-            when { anyOf { expression { SRC_CHANGED } expression { params.PUBLISH_TO_NMP }}}
+           when { anyOf {
+                        expression { SRC_CHANGED }
+                        expression { params.PUBLISH_TO_TESTSERVER }
+                        }
+                 }
             steps {
                 ansiColor('xterm') {
                     sh 'yarn run deploy && git push origin HEAD:master'
