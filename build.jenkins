@@ -2,6 +2,10 @@ pipeline {
     agent {
         label 'linux'
     }
+
+    // 0 - unchanged, 1 - changed
+    environment { SRC_CHANGED=true }
+
     stages {
         stage('Preparation') {
             steps {
@@ -14,6 +18,12 @@ pipeline {
 
                         // Docker für die Integration-Tests starten
                         // sh 'docker/_ci/run.sh --start'
+
+                        script {
+                            // 0 - unchanged, 1 - changed
+                            // Script-Logik wird mit ! umgekehrt
+                            SRC_CHANGED = ! sh(script: "srcchanged.sh --check", returnStatus: true)
+                        }
                     }
                 }
             }
@@ -29,13 +39,26 @@ pipeline {
             steps {
                 timeout(time: 15, unit: 'MINUTES') {
                     ansiColor('xterm') {
-                        // sh 'yarn run clean'
-                        sh 'yarn run deploy'
-                        // sh 'yarn run deploy:node'
-                        // sh 'yarn run deploy:web:prod'
+                        sh 'yarn run build'
                     }
                 }
 
+            }
+        }
+
+        stage('Deploy') {
+            // 1 - changed, 0 - unchanged
+            // SRC_CHANGED wird aber zu true bzw. false
+            //   - check auf == 1 funkt nicht
+            when { expression { SRC_CHANGED } }
+            steps {
+                ansiColor('xterm') {
+                    // Zu npmjs
+                    // sh 'yarn run deploy && git push origin HEAD:master'
+
+                    // Zum LightSail-Server
+                    sh 'deployWebApp.sh deploy'
+                }
             }
         }
     }

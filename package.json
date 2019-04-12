@@ -1,9 +1,9 @@
 {
-  "name": "vuetest3",
+  "name": "@mmit/vuetsstarter",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "deploy": "yarn run build",
@@ -11,23 +11,23 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "vue": "^2.6.6",
-    "vue-class-component": "^6.0.0",
-    "vue-property-decorator": "^7.0.0",
-    "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vue": "^2.6.10",
+    "vue-class-component": "^7.0.2",
+    "vue-property-decorator": "^8.1.0",
+    "vue-router": "^3.0.3",
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
-    "@types/jest": "^23.1.4",
-    "@vue/cli-plugin-typescript": "^3.5.0",
-    "@vue/cli-plugin-unit-jest": "^3.5.0",
-    "@vue/cli-service": "^3.5.0",
+    "@types/jest": "^24.0.11",
+    "@vue/cli-plugin-typescript": "^3.5.3",
+    "@vue/cli-plugin-unit-jest": "^3.5.3",
+    "@vue/cli-service": "^3.5.3",
     "@vue/test-utils": "1.0.0-beta.29",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
-    "ts-jest": "^23.0.0",
-    "typescript": "^3.2.1",
-    "vue-template-compiler": "^2.5.21",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.3",
+    "vue-template-compiler": "^2.6.10",
     "vuex-module-decorators": "^0.9.8"
   }
 }

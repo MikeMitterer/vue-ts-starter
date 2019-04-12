@@ -1,5 +1,5 @@
 # VUE Typescript Starter
-> Basic TS / Vue example
+> [Live](http://vuetsstarter.example.mikemitterer.at) | [Home GitHub](https://github.com/MikeMitterer/vue-ts-starter)
 
 Basically this App has three components: AppHeader, AppFooter, HelloWorld (for testing)
 and two views: Home + About.
