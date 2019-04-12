@@ -14,7 +14,7 @@
                 <span class="separator">/</span>
             </div>
             <span v-if="devmode" class="devmode">DevMode</span>
-            <span v-else class="production">Production</span>
+            <span v-if="!devmode" class="production">Production</span>
         </div>
 
     </footer>
