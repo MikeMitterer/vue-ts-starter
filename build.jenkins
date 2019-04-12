@@ -6,6 +6,10 @@ pipeline {
     // 0 - unchanged, 1 - changed
     environment { SRC_CHANGED=true }
 
+    parameters {
+        booleanParam(defaultValue: false, description: 'Publishes the module to NPMJS', name: 'PUBLISH_TO_NMP')
+    }
+    
     stages {
         stage('Preparation') {
             steps {
