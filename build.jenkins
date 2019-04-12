@@ -47,10 +47,7 @@ pipeline {
         }
 
         stage('Deploy') {
-            // 1 - changed, 0 - unchanged
-            // SRC_CHANGED wird aber zu true bzw. false
-            //   - check auf == 1 funkt nicht
-            when { expression { SRC_CHANGED } }
+            when { anyOf { expression { SRC_CHANGED } expression { params.PUBLISH_TO_NMP }}}
             steps {
                 ansiColor('xterm') {
                     sh 'yarn run deploy && git push origin HEAD:master'
