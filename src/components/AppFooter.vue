@@ -46,7 +46,9 @@
 
         public get published(): string { return process.env.VUE_APP_PUBLISHED; }
         public get version(): string { return process.env.VUE_APP_VERSION; }
-        public get devmode(): boolean { return process.env.VUE_APP_DEV_MODE; }
+        public get devmode(): boolean {
+            return process.env.VUE_APP_DEV_MODE === true
+                    || process.env.VUE_APP_DEV_MODE === 'true'; }
     }
     
 </script>
