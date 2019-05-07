@@ -1,4 +1,5 @@
 # VUE Typescript Starter
+
 > [Live](http://vuetsstarter.example.mikemitterer.at) | [Home GitHub](https://github.com/MikeMitterer/vue-ts-starter)
 
 Basically this App has three components: AppHeader, AppFooter, HelloWorld (for testing)
@@ -10,66 +11,75 @@ In `.env` is the title define - check it out.
 
 The cat on the top right is add statically, the Lamborghini is added dynamically. (AppHeader component)
 
-For State Management I added a "CounterModule" (Vuex)  
+For State Management I added a "CounterModule" (Vuex)
 
-![Screenshot](doc/screenshot.png)      
+![Screenshot](doc/screenshot.png)
 
 ## Environment-Vars and Template-Vars
 
 These vars are set in `vue.config.js`
- 
+
 If you want to see how you can use e.g. `process.env.VUE_APP_VERSION` check out `AppFooter.vue`
 
 `/public/index.html` tests if VUE_APP_DEV_MODE is set to true:
+
 ```html
 ...
-<html lang="en" <%if(VUE_APP_DEV_MODE){%>devmode="true"<%}%>>
-...
-``` 
+<html lang="en" <%if(VUE_APP_DEV_MODE){%>
+    devmode="true"<%}%>> ...
+</html>
+```
 
 ## Install
 
     # Clone Repo
     git clone https://github.com/MikeMitterer/vue-ts-starter SpaceInvaders
-    
+
     # Remove original .git-dir
     cd SpaceInvaders && rm -rf .git
-     
+
     # Change project name
     sed -i'' -e 's/@mmit\/vuetsstarter/your-project-name/g' package.json
-    
+
     # e.g.
     sed -i'' -e 's/@mmit\/vuetsstarter/@mmit\/spaceinvaders/g' package.json
-    
+
 ## Project setup
+
 ```
 yarn install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 yarn run start
 ```
 
 ### Compiles and minifies for production
+
 ```
 yarn run build
 ```
 
 ### Run your tests
+
 ```
 yarn run test
 ```
 
 ### Lints and fixes files
+
 ```
 yarn run lint
 ```
 
 ### Run your unit tests
+
 ```
 yarn run test:unit
 ```
 
 ### Customize configuration
+
 See [Configuration Reference](https://cli.vuejs.org/config/).
