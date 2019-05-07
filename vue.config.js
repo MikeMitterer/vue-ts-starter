@@ -19,18 +19,26 @@ process.env.VUE_APP_PUBLISHED = templateParams.VUE_APP_PUBLISHED;
 
 // http://bit.ly/2P5Pzdu
 module.exports = {
-    chainWebpack: config => {
-        config.plugin("html").tap(args => {
-            return args.map(arg => {
+    configureWebpack: (config) => {
+        config.entry = {
+            app: './src/main.ts',
+            mobile: './src/mobile.ts',
+        };
+    },
+    chainWebpack: (config) => {
+        config.plugin('html').tap((args) => {
+            return args.map((arg) => {
                 return Object.assign({}, arg, {
                     templateParameters(params) {
-                        return Object.assign({},
-                            arg.templateParameters(params),
-                            templateParams
-                        );
-                    }
+                        return Object.assign({}, arg.templateParameters(params), templateParams);
+                    },
                 });
             });
         });
-    }
+    },
+
+    // configure autoprefixer
+    // autoprefixer: {
+    //    browsers: ['last 2 versions'],
+    //},
 };

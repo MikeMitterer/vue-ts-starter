@@ -25,9 +25,22 @@ If you want to see how you can use e.g. `process.env.VUE_APP_VERSION` check out 
 ...
 <html lang="en" <%if(VUE_APP_DEV_MODE){%>devmode="true"<%}%>>
 ...
-
 ``` 
 
+## Install
+
+    # Clone Repo
+    git clone https://github.com/MikeMitterer/vue-ts-starter SpaceInvaders
+    
+    # Remove original .git-dir
+    cd SpaceInvaders && rm -rf .git
+     
+    # Change project name
+    sed -i'' -e 's/@mmit\/vuetsstarter/your-project-name/g' package.json
+    
+    # e.g.
+    sed -i'' -e 's/@mmit\/vuetsstarter/@mmit\/spaceinvaders/g' package.json
+    
 ## Project setup
 ```
 yarn install
@@ -35,7 +48,7 @@ yarn install
 
 ### Compiles and hot-reloads for development
 ```
-yarn run serve
+yarn run start
 ```
 
 ### Compiles and minifies for production
