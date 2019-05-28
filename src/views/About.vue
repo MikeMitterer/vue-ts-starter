@@ -14,7 +14,7 @@ export default class About extends Vue {
     }
 
     public get published(): string {
-        return process.env.VUE_APP_PUBLISHED;
+        return process.env.VUE_APP_PUBLISHED || '<process.env.VUE_APP_PUBLISHED = undefined>';
     }
 }
 </script>

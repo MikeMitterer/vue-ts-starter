@@ -43,13 +43,16 @@ export default class AppFooter extends Vue {
     }
 
     public get published(): string {
-        return process.env.VUE_APP_PUBLISHED;
+        return process.env.VUE_APP_PUBLISHED || '<process.env.VUE_APP_PUBLISHED = undefined>';
     }
     public get version(): string {
-        return process.env.VUE_APP_VERSION;
+        return process.env.VUE_APP_VERSION || '<process.env.VUE_APP_VERSION = undefined>';
     }
     public get devmode(): boolean {
-        return process.env.VUE_APP_DEV_MODE === true || process.env.VUE_APP_DEV_MODE === 'true';
+        const devMode =
+            process.env.VUE_APP_DEV_MODE || '<process.env.VUE_APP_DEV_MODE = undefined>';
+
+        return devMode === 'true';
     }
 }
 </script>
