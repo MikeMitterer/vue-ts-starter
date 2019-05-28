@@ -1,4 +1,7 @@
 module.exports = {
+  preset: "ts-jest",
+  cache: false,
+  
   moduleFileExtensions: [
     'js',
     'jsx',
@@ -8,13 +11,24 @@ module.exports = {
     'tsx'
   ],
   transform: {
-    '^.+\\.vue$': 'vue-jest',
+    '\\.jsx?$': '<rootDir>/node_modules/babel-jest',
+
+    '^.+\\.vue$': '<rootDir>/node_modules/vue-jest',
+    
     '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
-    '^.+\\.tsx?$': 'ts-jest'
+
+    "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest",
   },
+  
+  // An array of regexp pattern strings that are matched against all source file paths,
+  // matched files will skip transformation
+  //
+  // UNBEDINGT Notwendig für ES6 module!!!!
+  //
   transformIgnorePatterns: [
-    '/node_modules/'
+    "<rootDir>/node_modules/(?!@mmit\/communication)"
   ],
+
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
   },
@@ -22,7 +36,7 @@ module.exports = {
     'jest-serializer-vue'
   ],
   testMatch: [
-    '**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)'
+    '**/tests/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)'
   ],
   testURL: 'http://localhost/'
-}
+};
