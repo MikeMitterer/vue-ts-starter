@@ -1,7 +1,12 @@
+// Usage:
+//      E2E_TEST='true' jest src/test/e2e/browser.specs.ts
+// const isE2ETest = process.env.E2E_TEST === 'true';
+
 module.exports = {
+  // cache: false,
+
   preset: "ts-jest",
-  cache: false,
-  
+
   moduleFileExtensions: [
     'js',
     'jsx',
@@ -23,7 +28,7 @@ module.exports = {
   // An array of regexp pattern strings that are matched against all source file paths,
   // matched files will skip transformation
   //
-  // UNBEDINGT Notwendig für ES6 module!!!!
+  // A MUST! if the following module is in ES6-Format!!!!
   //
   transformIgnorePatterns: [
     "<rootDir>/node_modules/(?!@mmit\/communication)"
@@ -35,8 +40,21 @@ module.exports = {
   snapshotSerializers: [
     'jest-serializer-vue'
   ],
+
+    // The test environment that will be used for testing
+    //      https://jestjs.io/docs/en/configuration.html#testenvironment-string
+    testEnvironment: 'jsdom',
+    // testEnvironment: 'node',
+
   testMatch: [
-    '**/tests/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)'
+    '<rootDir>/tests/**/*.(spec|specs|test).(js|jsx|ts|tsx)',
+    '<rootDir>/__tests__/*.(js|jsx|ts|tsx)'
   ],
-  testURL: 'http://localhost/'
+  testURL: 'http://localhost/',
 };
+
+// if(isE2ETest) {
+//   module.exports.globalSetup = "jest-environment-puppeteer/setup";
+//   module.exports.globalTeardown = "jest-environment-puppeteer/teardown";
+//   module.exports.testEnvironment = "jest-environment-puppeteer";
+// }
