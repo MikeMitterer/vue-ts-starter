@@ -23,6 +23,9 @@ pipeline {
                         // Docker für die Integration-Tests starten
                         // sh 'docker/_ci/run.sh --start'
 
+                        // Hostname richtigstellen
+                        // sh 'cp -f tests/integration/test-config.linux.json tests/integration/test-config.json'
+
                         script {
                             // 0 - unchanged, 1 - changed
                             // Script-Logik wird mit ! umgekehrt
