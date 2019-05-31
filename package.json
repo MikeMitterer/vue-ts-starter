@@ -10,13 +10,13 @@
     "scripts": {
         "start": "vue-cli-service serve --mode development --open",
         "tc": "tsc --noEmit",
-        "build": "vue-cli-service build --mode development",
-        "build:prod": "vue-cli-service build --mode production",
         "lint": "vue-cli-service lint",
-        "deploy": "yarn version --new-version patch",
         "test": "yarn run test:unit",
         "test:unit": "vue-cli-service test:unit tests/unit/.*",
-        "test:integration": "vue-cli-service test:unit --runInBand --detectOpenHandles tests/integration/.*"
+        "test:integration": "vue-cli-service test:unit --runInBand --detectOpenHandles tests/integration/.*",
+        "build": "vue-cli-service build --mode development",
+        "build:prod": "vue-cli-service build --mode production",
+        "deploy": "yarn version --new-version patch",
     },
     "dependencies": {
         "@mmit/logging": "^0.1.3",

@@ -2,16 +2,28 @@
     "compilerOptions": {
         "strict": true,
         "incremental": true,
+        
         "target": "es6",
         "module": "esnext",
+        "moduleResolution": "node",
+
+        "sourceMap": true,
+
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "noEmitOnError": true,
+        "strictNullChecks": true,
+        "preserveConstEnums": false,
+        "removeComments": false,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+
+        "esModuleInterop": true,
+
         "jsx": "preserve",
         "importHelpers": true,
-        "moduleResolution": "node",
-        "experimentalDecorators": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "noImplicitReturns": true,
-        "sourceMap": true,
+
         "baseUrl": ".",
         "types": ["webpack-env", "jest", "node"],
         "paths": {
