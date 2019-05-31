@@ -16,7 +16,7 @@
         "test:integration": "vue-cli-service test:unit --runInBand --detectOpenHandles tests/integration/.*",
         "build": "vue-cli-service build --mode development",
         "build:prod": "vue-cli-service build --mode production",
-        "deploy": "yarn version --new-version patch",
+        "deploy": "yarn version --new-version patch"
     },
     "dependencies": {
         "@mmit/logging": "^0.1.3",
