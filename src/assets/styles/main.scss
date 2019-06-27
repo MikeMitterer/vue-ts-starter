@@ -15,6 +15,7 @@ $header-footer-padding: 10px;
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/:root
 :root {
+    --vh: 1vh;
     --header-footer-height: #{$header-footer-height};
     --content-height: calc(var(--vh, 1vh) * 100 - calc(var(--header-footer-height) * 2));
 }
