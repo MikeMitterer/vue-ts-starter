@@ -87,6 +87,8 @@ $header-footer-padding: 10px !default;
 
 
         // Fallback for browsers that do not support Custom Properties
+        //      https://caniuse.com/#feat=css-variables
+        //
         height: calc(100vh - (#{$header-footer-height} * 2));
         max-height: calc(100vh - (#{$header-footer-height} * 2));
 
@@ -105,8 +107,8 @@ $header-footer-padding: 10px !default;
     &__footer {
         padding: $header-footer-padding;
 
-        line-height: $header-footer-height - ($header-footer-padding * 2);
-        height: $header-footer-height;
+        line-height: calc(var(--header-footer-height, $header-footer-height) - (#{$header-footer-padding} * 2));
+        height: var(--header-footer-height, $header-footer-height);
 
         color: white;
 
