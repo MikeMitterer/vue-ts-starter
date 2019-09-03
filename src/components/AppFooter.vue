@@ -2,8 +2,10 @@
     <footer class="layout__footer">
         <div>
             <button class="add" @click="onClickIncrement">+</button>
-            <button class="subtract" @click="onClickDecrement">-</button>
-            <span id="app">Loading... / {{ title_inc || title }}</span>
+            <button class="subtract" v-on:click="onClickDecrement">-</button>
+            <span>Loading... / {{ title_inc || title }} </span>
+            <span v-if="isEven">even</span>
+            <span v-if="counter % 2 !== 0">odd</span>
         </div>
         <div>
             <div class="version_block">
@@ -20,7 +22,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import counter from '../store/modules/CounterModule';
+import CounterModule from '../store/modules/CounterModule';
 
 @Component
 export default class AppFooter extends Vue {
@@ -29,30 +31,40 @@ export default class AppFooter extends Vue {
 
     // Component methods can be declared as instance methods
     public onClickIncrement(): void {
-        counter.increment(2);
+        CounterModule.increment(1);
         // this.anotherTitle = `${this.title} + ${counter.count}`;
     }
 
     public onClickDecrement(): void {
-        counter.decrement(2);
+        CounterModule.decrement(1);
         // this.anotherTitle = `${this.title} + ${counter.count}`;
     }
 
     public get title_inc(): string {
-        return `${this.title} + ${counter.count}`;
+        return `${this.title} + ${CounterModule.count}`;
     }
 
     public get published(): string {
         return process.env.VUE_APP_PUBLISHED || '<process.env.VUE_APP_PUBLISHED = undefined>';
     }
+
     public get version(): string {
         return process.env.VUE_APP_VERSION || '<process.env.VUE_APP_VERSION = undefined>';
     }
+
     public get devmode(): boolean {
         const devMode =
             process.env.VUE_APP_DEV_MODE || '<process.env.VUE_APP_DEV_MODE = undefined>';
 
         return devMode === 'true';
+    }
+
+    public get isEven(): boolean {
+        return CounterModule.count % 2 === 0;
+    }
+
+    public get counter(): number {
+        return CounterModule.count;
     }
 }
 </script>
