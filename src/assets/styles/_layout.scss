@@ -89,8 +89,8 @@ $header-footer-padding: 10px !default;
         // Fallback for browsers that do not support Custom Properties
         //      https://caniuse.com/#feat=css-variables
         //
-        height: calc(100vh - (#{$header-footer-height} * 2));
-        max-height: calc(100vh - (#{$header-footer-height} * 2));
+        height: calc(100vh - (#{$header-height} + #{$footer-height}));
+        max-height: calc(100vh - (#{$header-height} + #{$footer-height}));
 
         height: calc(var(--content-height, 100%));
         max-height: calc(var(--content-height, 100%));

@@ -1,10 +1,6 @@
 <template>
     <v-app id="app" class="layout--off" color="gray-lighten2">
-        <!--    <div id="app" class="layout">-->
-        <!--        <AppHeader></AppHeader>-->
         <v-app-bar app color="indigo" dark clipped-left>
-            <!--                <div class="layout__content">-->
-            <!--                </div>-->
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title class="title">Application</v-toolbar-title>
             <AppHeader></AppHeader>
@@ -44,13 +40,11 @@
         <v-content>
             <!-- fluid -->
             <v-container class="fill-height align-start">
-                <!--                <v-row>-->
                 <router-view />
-                <!--                </v-row>-->
             </v-container>
         </v-content>
-        <!--        <AppFooter title="Mike"></AppFooter>-->
-        <v-footer fixed dark inset>Hallo TEST</v-footer>
+        <AppFooter title="Mike"></AppFooter>
+        <!--        <v-footer fixed dark>Hallo TEST</v-footer>-->
         <!--    </div>-->
     </v-app>
 </template>
@@ -83,8 +77,11 @@ export default class App extends Vue {
 .title {
     min-width: fit-content;
 }
-.v-footer--absolute,
-.v-footer--fixed {
-    z-index: 4;
+
+.v-content {
+    height: calc(var(--content-height, 100%));
+    max-height: calc(var(--content-height, 100%));
+
+    overflow-y: scroll;
 }
 </style>

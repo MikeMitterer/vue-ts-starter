@@ -7,7 +7,8 @@ $footer-color: $header-color;
 
 $block-color: rgba(#6844b7, 0.1);
 
-$header-footer-height: 50px;
+$header-height: 0px;
+$footer-height: 40px;
 $header-footer-padding: 10px;
 
 @import 'layout';
@@ -16,8 +17,9 @@ $header-footer-padding: 10px;
 // https://developer.mozilla.org/en-US/docs/Web/CSS/:root
 :root {
     --vh: 1vh;
-    --header-footer-height: #{$header-footer-height};
-    --content-height: calc(var(--vh, 1vh) * 100 - calc(var(--header-footer-height) * 2));
+    --header-height: #{$header-height};
+    --footer-height: #{$footer-height};
+    --content-height: calc(var(--vh, 1vh) * 100 - calc(var(--header-height) + var(--footer-height)));
 }
 
 body {

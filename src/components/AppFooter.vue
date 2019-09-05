@@ -1,23 +1,28 @@
 <template>
-    <footer class="layout__footer">
-        <div>
-            <button class="add" @click="onClickIncrement">+</button>
-            <button class="subtract" v-on:click="onClickDecrement">-</button>
-            <span>Loading... / {{ title_inc || title }} </span>
-            <span v-if="isEven">even</span>
-            <span v-if="counter % 2 !== 0">odd</span>
-        </div>
-        <div>
-            <div class="version_block">
+    <v-footer fixed dark>
+        <v-row class="mb-6" no-gutters>
+            <v-col>
+                <v-btn class="mr-3" color="success" small @click="onClickIncrement">+</v-btn>
+                <v-btn class="mr-3" color="error" small v-on:click="onClickDecrement">-</v-btn>
+                <span>Loading... / {{ title_inc || title }} </span>
+                <span v-if="isEven">even</span>
+                <span v-if="counter % 2 !== 0">odd</span>
+            </v-col>
+            <v-col class="version_block align-end">
                 <span class="version">Version {{ version }}</span>
-                <span class="separator">/</span>
+                <span class="separator mx-1">/</span>
                 <span class="published">{{ published }}</span>
-                <span class="separator">/</span>
-            </div>
-            <span v-if="devmode" class="devmode">DevMode</span>
-            <span v-if="!devmode" class="production">Production</span>
-        </div>
-    </footer>
+            </v-col>
+        </v-row>
+        <!--        <div>-->
+        <!--        </div>-->
+        <!--        <div>-->
+        <!--            <div class="version_block">-->
+        <!--            </div>-->
+        <!--            <span v-if="devmode" class="devmode">DevMode</span>-->
+        <!--            <span v-if="!devmode" class="production">Production</span>-->
+        <!--        </div>-->
+    </v-footer>
 </template>
 
 <script lang="ts">
@@ -69,4 +74,23 @@ export default class AppFooter extends Vue {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.v-footer--absolute,
+.v-footer--fixed {
+    z-index: 4;
+
+    .row {
+        margin: 0 !important;
+        padding: 0;
+    }
+
+    .col {
+        background-color: inherit;
+    }
+
+    .version_block {
+        text-align: right;
+        font-size: 90%;
+    }
+}
+</style>

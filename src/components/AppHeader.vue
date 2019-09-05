@@ -1,11 +1,11 @@
 <template>
-    <v-container fluid d-flex>
+    <v-container fluid d-flex class="pr-0">
         <!--<router-link to="/">Home</router-link>-->
         <!--<router-link to="/about">About</router-link>-->
         <v-toolbar-items>
             <v-btn text to="/" :ripple="false">Link 1</v-btn>
             <v-btn text to="/about" :ripple="false">Link 2</v-btn>
-            <v-btn text ripple="false">Link 3</v-btn>
+            <v-btn text :ripple="false">Link 3</v-btn>
         </v-toolbar-items>
         <!--            <router-link to="/">Home</router-link>-->
         <!--            <router-link to="/about">About</router-link>-->
@@ -50,7 +50,7 @@
             </v-badge>
         </v-toolbar-items>
 
-        <v-menu left bottom>
+        <v-menu left bottom class="ml-3">
             <template v-slot:activator="{ on }">
                 <v-btn icon v-on="on">
                     <v-icon>mdi-dots-vertical</v-icon>
