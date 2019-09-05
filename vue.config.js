@@ -1,5 +1,6 @@
 const moment = require('moment');
 const package = require('./package');
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 
 // const { BASE_PATH, SITE_ORIGIN, META } = require("./src/assets/constants.json");
 const devMode = process.env.NODE_ENV !== 'production';
@@ -24,7 +25,9 @@ module.exports = {
             app: './src/main.ts',
             mobile: './src/mobile.ts',
         };
+
     },
+
     chainWebpack: (config) => {
         config.plugin('html').tap((args) => {
             return args.map((arg) => {
@@ -35,6 +38,8 @@ module.exports = {
                 });
             });
         });
+
+        // config.plugin("vuetify-loader").use(VuetifyLoaderPlugin);
     },
 
     // configure autoprefixer

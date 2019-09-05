@@ -24,7 +24,7 @@
         "importHelpers": true,
 
         "baseUrl": ".",
-        "types": ["webpack-env", "jest", "node"],
+        "types": ["webpack-env", "jest", "node", "vuetify"],
         "paths": {
             "@/*": ["src/*"]
         },
