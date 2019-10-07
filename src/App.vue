@@ -2,6 +2,7 @@
     <div id="app" class="layout">
         <AppHeader></AppHeader>
         <div class="layout__content">
+            <!-- Router-Component wird hier gerendert -->
             <router-view />
         </div>
         <AppFooter title="Mike"></AppFooter>
