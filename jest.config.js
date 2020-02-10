@@ -51,6 +51,8 @@ module.exports = {
     '<rootDir>/__tests__/*.(js|jsx|ts|tsx)'
   ],
   testURL: 'http://localhost/',
+
+  setupFilesAfterEnv: ['<rootDir>/tests/jest.setup.js', 'jest-extended'],
 };
 
 // if(isE2ETest) {
