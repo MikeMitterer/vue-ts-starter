@@ -8,18 +8,25 @@
 </template>
 
 <script lang="ts">
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-import { Component, Vue } from 'vue-property-decorator';
-import counter from '../store/modules/CounterModule';
+import HelloWorld from '@/components/HelloWorld.vue'
+import { CounterStore } from '@/store/interfaces/CounterStore'
+import { RootState } from '@/store/interfaces/RootState' // @ is an alias to /src
+import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
     components: {
-        HelloWorld,
-    },
+        HelloWorld
+    }
 })
 export default class Home extends Vue {
     public get cnt(): number {
-        return counter.count;
+        return this.counterStore.count
+    }
+
+    // - Stores --------------------------------------------------------------------------------
+
+    private get counterStore(): CounterStore {
+        return (this.$store.state as RootState).counterStore()
     }
 }
 </script>

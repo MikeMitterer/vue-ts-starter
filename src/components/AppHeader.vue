@@ -18,20 +18,27 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import lambi from '../assets/images/lambi.png';
-import counter from '../store/modules/CounterModule';
+import { CounterStore } from '@/store/interfaces/CounterStore'
+import { RootState } from '@/store/interfaces/RootState'
+import { Component, Prop, Vue } from 'vue-property-decorator'
+import lambi from '../assets/images/lambi.png'
 
 @Component
 export default class AppHeader extends Vue {
-    @Prop() private msg!: string;
+    @Prop() private msg!: string
 
     get img(): string {
-        return lambi;
+        return lambi
     }
 
     public get counter(): number {
-        return Math.min(500, Math.max(110, counter.count));
+        return Math.min(500, Math.max(110, this.counterStore.count))
+    }
+
+    // - Stores --------------------------------------------------------------------------------
+
+    private get counterStore(): CounterStore {
+        return (this.$store.state as RootState).counterStore()
     }
 }
 </script>

@@ -1,17 +1,26 @@
-import Vue from 'vue';
-import Vuex, { ActionContext, ActionTree, MutationTree } from 'vuex';
+import { counterStore, CounterStore } from '@/store/interfaces/CounterStore'
+import { RootState } from '@/store/interfaces/RootState'
+import CounterModule from '@/store/modules/CounterModule'
+import { isNotRegistered } from '@/store/utils'
+import { LoggerFactory } from '@mmit/logging'
+import Vue from 'vue'
+import Vuex, { ActionContext, ActionTree, MutationTree } from 'vuex'
+import { getModule } from 'vuex-module-decorators'
 
-// import gameModule from './modules/GameModule';
+const logger = LoggerFactory.getLogger('vue-ts-starter.store')
 
-Vue.use(Vuex);
-
-interface RootState {
-    loaded: boolean;
-}
+Vue.use(Vuex)
 
 const state: RootState = {
     loaded: false,
-};
+
+    counterStore: (): CounterStore => {
+        if (isNotRegistered(counterStore.NAME, store)) {
+            store.registerModule(counterStore.NAME, CounterModule)
+        }
+        return getModule(CounterModule, store)
+    }
+}
 
 /**
  * Mutations are synchronous
@@ -19,11 +28,11 @@ const state: RootState = {
  *      context.commit('readyState', loadState);
  */
 const mutations: MutationTree<RootState> = {
-    readyState(status: RootState, payload): void {
-        // logger.info(`readyState - Mutation`);
-        status.loaded = true;
-    },
-};
+    readyState(status: RootState, payload: boolean): void {
+        status.loaded = payload
+        logger.info('Root-Store initialized!')
+    }
+}
 
 /**
  * Actions can be asynchronous.
@@ -34,25 +43,24 @@ const mutations: MutationTree<RootState> = {
  *      this.$store.dispatch('readyState');
  */
 const actions: ActionTree<RootState, RootState> = {
-    async readyState(
-        context: ActionContext<RootState, RootState>,
-        payload: undefined,
-    ): Promise<void> {
-        // logger.info(`readyState - Action (${JSON.stringify(context)},${payload})`);
-        // logger.info(`readyState - Action`);
+    // prettier-ignore
+    async readyState( context: ActionContext<RootState, RootState>, payload: boolean = true ): Promise<void> {
+        logger.info('Initializing Root store...');
 
-        const loadState = true;
-        context.commit('readyState', loadState);
-    },
-};
+        // Nur zum testen...
+        await context.state.counterStore().init()
+
+        context.commit('readyState', payload)
+    }
+}
 
 const store = new Vuex.Store({
     state,
     mutations,
-    actions,
+    actions
     // modules: {
     //     gameModule,
     // },
-});
+})
 
-export default store;
+export default store

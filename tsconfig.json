@@ -2,7 +2,14 @@
     "compilerOptions": {
         "strict": true,
 
-        "target": "es6",
+        "target": "es2020",
+        "rootDir": "./",
+
+        // commonjs, amd, system oder es6 (= es2015), esnext
+        // - commonjs ist im Starter-Template von MS
+        //
+        // Beste Variante ist es6 (Vue esnext)
+        // Mehr: http://www.geekabyte.io/2018/12/understanding-javascript-modules-as.html
         "module": "esnext",
         "moduleResolution": "node",
 

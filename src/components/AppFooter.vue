@@ -21,50 +21,56 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import CounterModule from '../store/modules/CounterModule';
+import { CounterStore } from '@/store/interfaces/CounterStore'
+import { RootState } from '@/store/interfaces/RootState'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class AppFooter extends Vue {
     @Prop({ default: process.env.VUE_APP_TITLE })
-    private title!: string;
+    private title!: string
 
     // Component methods can be declared as instance methods
     public onClickIncrement(): void {
-        CounterModule.increment(1);
+        this.counterStore.increment(1)
         // this.anotherTitle = `${this.title} + ${counter.count}`;
     }
 
     public onClickDecrement(): void {
-        CounterModule.decrement(1);
+        this.counterStore.decrement(1)
         // this.anotherTitle = `${this.title} + ${counter.count}`;
     }
 
     public get title_inc(): string {
-        return `${this.title} + ${CounterModule.count}`;
+        return `${this.title} + ${this.counterStore.count}`
     }
 
     public get published(): string {
-        return process.env.VUE_APP_PUBLISHED || '<process.env.VUE_APP_PUBLISHED = undefined>';
+        return process.env.VUE_APP_PUBLISHED || '<process.env.VUE_APP_PUBLISHED = undefined>'
     }
 
     public get version(): string {
-        return process.env.VUE_APP_VERSION || '<process.env.VUE_APP_VERSION = undefined>';
+        return process.env.VUE_APP_VERSION || '<process.env.VUE_APP_VERSION = undefined>'
     }
 
     public get devmode(): boolean {
-        const devMode =
-            process.env.VUE_APP_DEV_MODE || '<process.env.VUE_APP_DEV_MODE = undefined>';
+        const devMode = process.env.VUE_APP_DEV_MODE || '<process.env.VUE_APP_DEV_MODE = undefined>'
 
-        return devMode === 'true';
+        return devMode === 'true'
     }
 
     public get isEven(): boolean {
-        return CounterModule.count % 2 === 0;
+        return this.counterStore.count % 2 === 0
     }
 
     public get counter(): number {
-        return CounterModule.count;
+        return this.counterStore.count
+    }
+
+    // - Stores --------------------------------------------------------------------------------
+
+    private get counterStore(): CounterStore {
+        return (this.$store.state as RootState).counterStore()
     }
 }
 </script>
