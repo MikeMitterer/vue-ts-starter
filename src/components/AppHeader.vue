@@ -1,14 +1,18 @@
 <template>
     <div class="layout__header">
         <nav class="navbar navbar-light toolbar">
-            <router-link to="/">Home</router-link>
+            <router-link to="/">
+                <span class="iconify" height="20" data-icon="mdi-home">uu</span>Home
+            </router-link>
             <span class="separator">|</span>
-            <router-link to="/about">About</router-link>
+            <router-link to="/about">
+                <span class="iconify" height="20" data-icon="mdi-information-outline"></span> About
+            </router-link>
         </nav>
         <div class="demo_images">
             <img
                 class="cat"
-                style="position: absolute;"
+                style="position: absolute"
                 v-bind:style="{ left: counter + 'px' }"
                 src="../assets/images/static/cat.jpg"
             />
