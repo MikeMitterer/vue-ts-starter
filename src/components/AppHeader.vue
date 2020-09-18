@@ -9,6 +9,7 @@
                 <span class="iconify" height="20" data-icon="mdi-information-outline"></span> About
             </router-link>
         </nav>
+        {{ msg }}
         <div class="demo_images">
             <img
                 class="cat"
@@ -22,29 +23,45 @@
 </template>
 
 <script lang="ts">
-import { CounterStore } from '@/store/interfaces/CounterStore'
-import { RootState } from '@/store/interfaces/RootState'
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { computed, defineComponent, ref } from 'vue'
 import lambi from '../assets/images/lambi.png'
 
-@Component
-export default class AppHeader extends Vue {
-    @Prop() private msg!: string
-
-    get img(): string {
-        return lambi
+export default defineComponent({
+    name: 'AppHeader',
+    props: {
+        msg: {
+            type: String,
+            required: true
+        }
+    },
+    setup(props) {
+        const counter = ref(0)
+        return {
+            counter,
+            img: computed((): string => {
+                return lambi
+            })
+        }
     }
-
-    public get counter(): number {
-        return Math.min(500, Math.max(110, this.counterStore.count))
-    }
-
-    // - Stores --------------------------------------------------------------------------------
-
-    private get counterStore(): CounterStore {
-        return (this.$store.state as RootState).counterStore()
-    }
-}
+})
+// @Component
+// export default class AppHeader extends Vue {
+//     @Prop() private msg!: string
+//
+//     get img(): string {
+//         return lambi
+//     }
+//
+//     public get counter(): number {
+//         return Math.min(500, Math.max(110, this.counterStore.count))
+//     }
+//
+//     // - Stores --------------------------------------------------------------------------------
+//
+//     private get counterStore(): CounterStore {
+//         return (this.$store.state as RootState).counterStore()
+//     }
+// }
 </script>
 
 <style scoped lang="scss"></style>

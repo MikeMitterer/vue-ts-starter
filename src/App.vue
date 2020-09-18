@@ -1,6 +1,6 @@
 <template>
     <div id="app" class="layout">
-        <AppHeader></AppHeader>
+        <AppHeader msg="Header-Message set by Mike"></AppHeader>
         <div class="layout__content">
             <!-- Router-Component wird hier gerendert -->
             <router-view />
@@ -10,12 +10,21 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import AppFooter from './components/AppFooter.vue';
-import AppHeader from './components/AppHeader.vue';
+import { defineComponent } from 'vue'
+// import { Component, Vue } from 'vue-property-decorator'
+import { AppFooter } from './components/AppFooter.vue'
+import AppHeader from './components/AppHeader.vue'
 
-@Component({ components: { AppFooter, AppHeader } })
-export default class App extends Vue {}
+// @Component({ components: { AppFooter, AppHeader } })
+// export default class App extends Vue {}
+export default defineComponent({
+    name: 'App',
+    components: { AppFooter, AppHeader },
+
+    setup(props) {
+        return {}
+    }
+})
 </script>
 
 <style lang="scss">

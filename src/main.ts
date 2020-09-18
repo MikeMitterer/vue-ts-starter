@@ -1,15 +1,10 @@
 import '@/assets/styles/main.scss'
-import Vue from 'vue'
+import { createApp, h } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 
-Vue.config.productionTip = false
-
-new Vue({
-    router,
-    store,
-
+createApp({
     mounted(): void {
         //
         // Hier wird der "readState" vom main-Store angestoßen...
@@ -19,5 +14,8 @@ new Vue({
     },
 
     // tslint:disable-next-line:typedef
-    render: (h) => h(App)
-}).$mount('#app')
+    render: () => h(App)
+})
+    .use(router)
+    .use(store)
+    .mount('#app')

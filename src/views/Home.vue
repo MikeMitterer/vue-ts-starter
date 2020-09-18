@@ -9,25 +9,44 @@
 
 <script lang="ts">
 import HelloWorld from '@/components/HelloWorld.vue'
-import { CounterStore } from '@/store/interfaces/CounterStore'
-import { RootState } from '@/store/interfaces/RootState' // @ is an alias to /src
-import { Component, Vue } from 'vue-property-decorator'
+// import { CounterStore } from '@/store/interfaces/CounterStore'
+// import { RootState } from '@/store/interfaces/RootState' // @ is an alias to /src
+import { defineComponent } from 'vue'
+// import { useStore } from 'vuex'
 
-@Component({
-    components: {
-        HelloWorld
-    }
-})
-export default class Home extends Vue {
-    public get cnt(): number {
-        return this.counterStore.count
+export default defineComponent({
+    name: 'Home',
+    components: { HelloWorld },
+    props: {
+        msg: String
+    },
+    setup(props) {
+        return {
+            cnt: () => {}
+        }
     }
 
     // - Stores --------------------------------------------------------------------------------
+    // counterStore(): CounterStore {
+    //     return (useStore().state as RootState).counterStore()
+    // }
+})
 
-    private get counterStore(): CounterStore {
-        return (this.$store.state as RootState).counterStore()
-    }
-}
+// @Component({
+//     components: {
+//         HelloWorld
+//     }
+// })
+// export default class Home extends Vue {
+//     public get cnt(): number {
+//         return this.counterStore.count
+//     }
+//
+//     // - Stores --------------------------------------------------------------------------------
+//
+//     private get counterStore(): CounterStore {
+//         return (useStore().state as RootState).counterStore()
+//     }
+// }
 </script>
 <style></style>

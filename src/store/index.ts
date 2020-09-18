@@ -1,25 +1,19 @@
-import { counterStore, CounterStore } from '@/store/interfaces/CounterStore'
 import { RootState } from '@/store/interfaces/RootState'
-import CounterModule from '@/store/modules/CounterModule'
-import { isNotRegistered } from '@/store/utils'
+// import CounterModule from '@/store/modules/CounterModule'
 import { LoggerFactory } from '@mmit/logging'
-import Vue from 'vue'
-import Vuex, { ActionContext, ActionTree, MutationTree } from 'vuex'
-import { getModule } from 'vuex-module-decorators'
+import { ActionContext, ActionTree, createStore, MutationTree } from 'vuex'
 
 const logger = LoggerFactory.getLogger('vue-ts-starter.store')
 
-Vue.use(Vuex)
-
 const state: RootState = {
-    loaded: false,
+    loaded: false
 
-    counterStore: (): CounterStore => {
-        if (isNotRegistered(counterStore.NAME, store)) {
-            store.registerModule(counterStore.NAME, CounterModule)
-        }
-        return getModule(CounterModule, store)
-    }
+    // counterStore: (): CounterStore => {
+    //     if (isNotRegistered(counterStore.NAME, store)) {
+    //         store.registerModule(counterStore.NAME, CounterModule)
+    //     }
+    //     return getModule(CounterModule, store)
+    // }
 }
 
 /**
@@ -48,13 +42,13 @@ const actions: ActionTree<RootState, RootState> = {
         logger.info('Initializing Root store...');
 
         // Nur zum testen...
-        await context.state.counterStore().init()
+        // await context.state.counterStore().init()
 
         context.commit('readyState', payload)
     }
 }
 
-const store = new Vuex.Store({
+const store = createStore({
     state,
     mutations,
     actions

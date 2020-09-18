@@ -1,55 +1,55 @@
 {
-    "name": "@mmit/vuetsstarter",
-    "version": "0.1.13",
-    "author": "Mike Mitterer",
-    "description": "VUE Starter-Template",
-    "keywords": [
-        "typescript vue"
-    ],
-    "private": true,
-    "scripts": {
-        "start": "vue-cli-service serve --mode development --open",
-        "tc": "tsc --noEmit",
-        "lint": "vue-cli-service lint",
-        "test": "yarn run test:unit",
-        "test:unit": "vue-cli-service test:unit tests/unit/.*",
-        "test:integration": "vue-cli-service test:unit --runInBand --detectOpenHandles tests/integration/.*",
-        "build": "vue-cli-service build --mode development",
-        "build:prod": "vue-cli-service build --mode production",
-        "deploy": "yarn version --new-version patch"
-    },
-    "dependencies": {
-        "@mmit/logging": "^0.1.5",
-        "@mmit/styles": "^0.1.15",
-        "vue": "^2.6.12",
-        "vue-class-component": "^7.2.5",
-        "vue-property-decorator": "^9.0.0",
-        "vue-router": "^3.4.3",
-        "vuex": "^3.5.1"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.11.6",
-        "@babel/preset-env": "^7.11.5",
-        "@babel/preset-typescript": "^7.10.4",
-        "@types/jest": "26.0.13",
-        "@vue/cli-plugin-typescript": "^4.5.4",
-        "@vue/cli-plugin-unit-jest": "^4.5.4",
-        "@vue/cli-service": "^4.5.4",
-        "@vue/test-utils": "1.1.0",
-        "babel-jest": "26.3.0",
-        "jest": "26.4.2",
-        "moment": "^2.27.0",
-        "node-sass": "^4.14.1",
-        "sass-loader": "^10.0.2",
-        "ts-jest": "26.3.0",
-        "tslint-consistent-codestyle": "^1.16.0",
-        "typescript": "^4.0.2",
-        "vue-jest": "^3.0.6",
-        "vue-template-compiler": "^2.6.12",
-        "vuex-module-decorators": "^0.17.0"
-    },
-    "resolutions": {
-        "@vue/cli-plugin-unit-jest/jest": "24",
-        "@vue/cli-plugin-unit-jest/babel-jest": "24"
-    }
+  "author": "Mike Mitterer",
+  "name": "@mmit/vuetsstarter",
+  "version": "0.1.13",
+  "private": true,
+  "description": "VUE Starter-Template",
+  "keywords": [
+    "typescript vue"
+  ],
+  "scripts": {
+    "build": "vue-cli-service build --mode development",
+    "test:unit": "vue-cli-service test:unit tests/unit/.*",
+    "lint": "vue-cli-service lint",
+    "deploy": "yarn version --new-version patch",
+    "build:prod": "vue-cli-service build --mode production",
+    "start": "vue-cli-service serve --mode development --open",
+    "tc": "tsc --noEmit",
+    "test": "yarn run test:unit",
+    "test:integration": "vue-cli-service test:unit --runInBand --detectOpenHandles tests/integration/.*"
+  },
+  "dependencies": {
+    "@mmit/logging": "^0.1.5",
+    "@mmit/styles": "^0.1.18",
+    "vue": "^3.0.0-beta.1",
+    "vue-class-component": "^7.2.6",
+    "vue-property-decorator": "^9.0.0",
+    "vue-router": "^4.0.0-beta.4",
+    "vuex": "^4.0.0-alpha.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-typescript": "^7.10.4",
+    "@types/jest": "26.0.14",
+    "@vue/cli-plugin-typescript": "^4.5.4",
+    "@vue/cli-plugin-unit-jest": "^4.5.4",
+    "@vue/cli-service": "^4.5.4",
+    "@vue/compiler-sfc": "^3.0.0-beta.1",
+    "@vue/test-utils": "^2.0.0-alpha.1",
+    "babel-jest": "26.3.0",
+    "jest": "26.4.2",
+    "moment": "^2.27.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.2",
+    "ts-jest": "26.3.0",
+    "tslint-consistent-codestyle": "^1.16.0",
+    "typescript": "^4.0.2",
+    "vue-jest": "^3.0.7",
+    "vuex-module-decorators": "^0.17.0"
+  },
+  "resolutions": {
+    "@vue/cli-plugin-unit-jest/jest": "24",
+    "@vue/cli-plugin-unit-jest/babel-jest": "24"
+  }
 }

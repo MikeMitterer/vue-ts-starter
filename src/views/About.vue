@@ -4,25 +4,42 @@
     </div>
 </template>
 <script lang="ts">
-import { CounterStore } from '@/store/interfaces/CounterStore'
-import { RootState } from '@/store/interfaces/RootState'
-import { Component, Vue } from 'vue-property-decorator'
+import { computed, defineComponent, ref } from 'vue'
 
-@Component({ components: {} })
-export default class About extends Vue {
-    public get counter(): number {
-        return this.counterStore.count
+export default defineComponent({
+    name: 'About',
+    setup(props) {
+        const counter = ref(0)
+        const published = computed(() => {
+            return process.env.VUE_APP_PUBLISHED || '<process.env.VUE_APP_PUBLISHED = undefined>'
+        })
+
+        return {
+            counter,
+            published
+        }
     }
+})
 
-    public get published(): string {
-        return process.env.VUE_APP_PUBLISHED || '<process.env.VUE_APP_PUBLISHED = undefined>'
-    }
+// import { CounterStore } from '@/store/interfaces/CounterStore'
+// import { RootState } from '@/store/interfaces/RootState'
+// import { Component, Vue } from 'vue-property-decorator'
 
-    // - Stores --------------------------------------------------------------------------------
-
-    private get counterStore(): CounterStore {
-        return (this.$store.state as RootState).counterStore()
-    }
-}
+// @Component({ components: {} })
+// export default class About extends Vue {
+//     public get counter(): number {
+//         return this.counterStore.count
+//     }
+//
+//     public get published(): string {
+//         return process.env.VUE_APP_PUBLISHED || '<process.env.VUE_APP_PUBLISHED = undefined>'
+//     }
+//
+//     // - Stores --------------------------------------------------------------------------------
+//
+//     private get counterStore(): CounterStore {
+//         return (this.$store.state as RootState).counterStore()
+//     }
+// }
 </script>
 <style lang="scss"></style>
