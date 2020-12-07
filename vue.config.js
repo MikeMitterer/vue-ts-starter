@@ -19,6 +19,12 @@ process.env.VUE_APP_PUBLISHED = templateParams.VUE_APP_PUBLISHED
 
 // http://bit.ly/2P5Pzdu
 module.exports = {
+    devServer: {
+        https: true,
+        host: "mobiad.int.mikemitterer.at",
+        cert: ".ssl/cert.pem",
+        key: ".ssl/privkey.pem"
+    },
     configureWebpack: (config) => {
         config.entry = {
             app: './src/main.ts',
@@ -38,19 +44,25 @@ module.exports = {
         })
     },
 
+    // PWA-Plugin:
+    //      https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa
     pwa: {
         name: 'My App1',
+        "display": "standalone",
+        "start_url": "/index.html",
         themeColor: '#c84019',
         msTileColor: '#000000',
         appleMobileWebAppCapable: 'yes',
         appleMobileWebAppStatusBarStyle: 'black',
 
         // configure the workbox plugin
-        workboxPluginMode: 'GenerateSW'
+        // workboxPluginMode: 'GenerateSW'
+        
+        // workboxPluginMode: "InjectManifest",
         // workboxOptions: {
-        // swSrc is required in InjectManifest mode.
-        // swSrc: 'dev/sw.js'
-        // ...other Workbox options...
+        //     // swSrc is required in InjectManifest mode.
+        //         swSrc: 'src/service-worker.js',
+        //         swDest: 'service-worker.js',
         // }
     }
 

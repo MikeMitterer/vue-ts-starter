@@ -12,7 +12,7 @@ register(`${process.env.BASE_URL}service-worker.js`, {
         )
     },
     registered() {
-        console.log('Service worker has been registered.')
+        console.log(`Service worker has been registered! (${process.env.BASE_URL}service-worker.js)`)
     },
     cached() {
         console.log('Content has been cached for offline use.')
@@ -21,7 +21,7 @@ register(`${process.env.BASE_URL}service-worker.js`, {
         console.log('New content is downloading.')
     },
     updated() {
-        console.log('New content is available; please refresh.')
+        console.log('New content is available; please refresh...')
     },
     offline() {
         console.log('No internet connection found. App is running in offline mode.')

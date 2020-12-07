@@ -47,7 +47,17 @@
     "typescript": "^4.1.2",
     "vue-jest": "^3.0.6",
     "vue-template-compiler": "^2.6.12",
-    "vuex-module-decorators": "^1.0.1"
+    "vuex-module-decorators": "^1.0.1",
+    "workbox-core": "5.0.0",
+    "workbox-routing": "5.0.0",
+    "workbox-strategies": "5.0.0",
+    "workbox-precaching": "5.0.0",
+    "workbox-expiration": "5.0.0",
+    "workbox-background-sync": "5.0.0",
+    "workbox-cacheable-response": "5.0.0",
+    "workbox-window": "5.0.0",
+    "workbox-navigation-preload": "5.0.0",
+    "workbox-broadcast-update": "5.0.0"
   },
   "keywords": [
     "typescript vue"

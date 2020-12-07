@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <img alt="Vue logo" class="logo" src="../assets/logo.png" />
-        <HelloWorld msg="Welcome to Your Vue.js + TypeScript App - 2" />
+        <HelloWorld msg="Welcome to Your Vue.js + TypeScript App - 4" />
         <h3>From Store!</h3>
         <div>Counter: {{ cnt }}</div>
     </div>
