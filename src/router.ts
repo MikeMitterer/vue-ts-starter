@@ -10,6 +10,9 @@ export default new Router({
     base: process.env.BASE_URL,
     routes: [
         {
+            name: 'sw',
+            path: './sw.js',
+        },        {
             name: 'home',
             path: '/',
             component: Home,
@@ -22,11 +25,6 @@ export default new Router({
             // which is lazy-loaded when the route is visited.
             component: (): Promise<typeof import('*.vue')> =>
                 import(/* webpackChunkName: "about" */ './views/About.vue'),
-        },
-        {
-            name: 'home',
-            path: '/sw.js',
-            component: Home,
-        },
+        }
     ],
 });

@@ -1,3 +1,5 @@
+import { workbox } from './registerServiceWorker'
+
 workbox.setConfig({ debug: true });
 workbox.precaching.precacheAndRoute([]);
 

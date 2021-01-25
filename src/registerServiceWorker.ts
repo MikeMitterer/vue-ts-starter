@@ -1,33 +1,51 @@
 /* tslint:disable */
 /* eslint-disable no-console */
 
-import { register } from 'register-service-worker'
+// import { register } from 'register-service-worker'
+//
+// const serviceWorker = "sw.js"
+//
+// // if (process.env.NODE_ENV === 'production') {
+// register(`${process.env.BASE_URL}${serviceWorker}`, {
+//     ready() {
+//         console.log(
+//             'App is being served from cache by a service worker.\n' +
+//                 'For more details, visit https://goo.gl/AFskqB'
+//         )
+//     },
+//     registered() {
+//         console.log(`Service worker has been registered! (${process.env.BASE_URL}${serviceWorker})`)
+//     },
+//     cached() {
+//         console.log('Content has been cached for offline use.')
+//     },
+//     updatefound() {
+//         console.log('New content is downloading.')
+//     },
+//     updated() {
+//         console.log('New content is available; please refresh...')
+//     },
+//     offline() {
+//         console.log('No internet connection found. App is running in offline mode.')
+//     },
+//     error(error) {
+//         console.error('Error during service worker registration:', error)
+//     }
+// })
+// // }
 
-// if (process.env.NODE_ENV === 'production') {
-register(`${process.env.BASE_URL}service-worker.js`, {
-    ready() {
-        console.log(
-            'App is being served from cache by a service worker.\n' +
-                'For more details, visit https://goo.gl/AFskqB'
-        )
-    },
-    registered() {
-        console.log(`Service worker has been registered! (${process.env.BASE_URL}service-worker.js)`)
-    },
-    cached() {
-        console.log('Content has been cached for offline use.')
-    },
-    updatefound() {
-        console.log('New content is downloading.')
-    },
-    updated() {
-        console.log('New content is available; please refresh...')
-    },
-    offline() {
-        console.log('No internet connection found. App is running in offline mode.')
-    },
-    error(error) {
-        console.error('Error during service worker registration:', error)
-    }
-})
-// }
+import { Workbox } from 'workbox-window'
+
+export let workbox: Workbox | undefined;
+
+if ("serviceWorker" in navigator) {
+    workbox = new Workbox(`${process.env.BASE_URL}sw.js`);
+    workbox.addEventListener("controlling", () => {
+        window.location.reload();
+    });
+
+    // noinspection JSIgnoredPromiseFromCall
+    workbox.register();
+} else {
+    workbox = undefined;
+}
