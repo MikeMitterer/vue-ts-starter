@@ -4,7 +4,7 @@ import store from '../index'
 
 @Module({ namespaced: true, name: counterStore.NAME, store })
 export default class CounterModule extends VuexModule implements CounterStore {
-    private _count = 150
+    private _count = 350
 
     public get count(): number {
         return this._count

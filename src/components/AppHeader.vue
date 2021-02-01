@@ -5,6 +5,10 @@
                 <span class="iconify" height="20" data-icon="mdi-home">uu</span>Home
             </router-link>
             <span class="separator">|</span>
+            <router-link to="/charts">
+                <span class="iconify" height="20" data-icon="mdi-chart-bar"></span> Charts
+            </router-link>
+            <span class="separator">|</span>
             <router-link to="/about">
                 <span class="iconify" height="20" data-icon="mdi-information-outline"></span> About
             </router-link>

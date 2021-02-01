@@ -1,4 +1,5 @@
 import '@/assets/styles/main.scss'
+import { loadGCharts } from '@/utils/gcharts'
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'

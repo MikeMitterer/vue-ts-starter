@@ -31,7 +31,12 @@
         "importHelpers": true,
 
         "baseUrl": ".",
-        "types": ["webpack-env", "jest", "node"],
+        "types": [
+            "webpack-env",
+            "jest",
+            "node",
+            "google.visualization"
+        ],
         "paths": {
             "@/*": ["src/*"]
         },

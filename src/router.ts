@@ -23,5 +23,11 @@ export default new Router({
             component: (): Promise<typeof import('*.vue')> =>
                 import(/* webpackChunkName: "about" */ './pages/About.vue'),
         },
+        {
+            name: 'charts',
+            path: '/charts',
+            component: (): Promise<typeof import('*.vue')> =>
+                import(/* webpackChunkName: "charts" */ './pages/Charts.vue'),
+        },
     ],
 });
