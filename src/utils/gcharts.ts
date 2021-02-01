@@ -1,3 +1,35 @@
+/**
+ * Initialisiert das Google-Charts API
+ *      https://developers.google.com/chart
+ *
+ * Usage:
+ *      const obj = await loadGCharts('current', {
+ *            packages: ['corechart', 'table']
+ *      })
+ *
+ *      // Define the chart to be drawn.
+ *      const data = new google.visualization.DataTable();
+ *      data.addColumn('string', 'Element');
+ *      data.addColumn('number', 'Percentage');
+ *      data.addRows([
+ *          ['Nitrogen', 0.78],
+ *          ['Oxygen', 0.21],
+ *          ['Other', 0.01]
+ *      ]);
+ *
+ *      const drawChart = (): void => {
+ *
+ *          // Instantiate and draw the chart.
+ *          const div = document.getElementById('myPieChart')!
+ *          const chart = new google.visualization.PieChart(div);
+ *
+ *          chart.draw(data, {
+ *              // @ts-ignore
+ *              width: div.parentElement.wid
+ *          });
+ *      }
+ *      drawChart()
+ */
 import { LoggerFactory } from '@mmit/logging'
 import LoadOptions = google.LoadOptions
 
@@ -31,7 +63,7 @@ interface Charts {
     setOnLoadCallback(handler: Function): void;
 }
 
-export function gchartsInit(): Promise<Charts> {
+function addScriptTagForGoogleCharts(): Promise<Charts> {
     // If already included in the page:
     // @ts-ignore
     if (window.google && window.google.charts) {
@@ -60,11 +92,18 @@ export function gchartsInit(): Promise<Charts> {
     return initPromise
 }
 
+/**
+ * Läd das notwendige Loader-Script und lädt auch
+ * die angegebenen Chart Module (z.B. 'corechart', 'table')
+ *
+ * @param version
+ * @param options
+ */
 export const loadGCharts = async (version: string, options: google.LoadOptions): Promise<Charts> => {
     const logger = LoggerFactory.getLogger('mmit.vue-ts-starter.utils.loadGCharts');
 
     // google.chart-Object
-    const obj = await gchartsInit()
+    const obj = await addScriptTagForGoogleCharts()
 
     // we get something like this: "current_packages-corechart-table"
     const settingsKey = version + '_' + JSON.stringify(options, Object.keys(options).sort())
