@@ -38,15 +38,15 @@ export default class Charts extends Vue {
             ['Other', 0.01]
         ]);
 
+        // Instantiate and draw the chart.
+        const div = document.getElementById('myPieChart')!
+        const chart = new google.visualization.PieChart(div);
+
         const drawChart = (): void => {
-
-            // Instantiate and draw the chart.
-            const div = document.getElementById('myPieChart')!
-            const chart = new google.visualization.PieChart(div);
-
             chart.draw(data, {
                 // @ts-ignore
-                width: div.parentElement.wid
+                // width: div.parentElement.clientWidth
+                backgroundColor: { fill: 'transparent' }
             });
         }
         drawChart()
@@ -84,7 +84,7 @@ export default class Charts extends Vue {
         grid-area: chart;
         
         // max-width: 100%;
-        border: 1px solid red;
+        // border: 1px solid red;
         min-height: 450px;
     }
 }
