@@ -2,6 +2,14 @@
  * Initialisiert das Google-Charts API
  *      https://developers.google.com/chart
  *
+ *  Folgende Packages werden benötigt:
+ *      @types/google.visualization
+ *
+ *  tsconfig:
+ *      "types": [
+ *          "google.visualization"
+ *      ],
+ *
  * Usage:
  *      const obj = await loadGCharts('current', {
  *            packages: ['corechart', 'table']
