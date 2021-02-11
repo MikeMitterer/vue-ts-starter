@@ -19,6 +19,26 @@ process.env.VUE_APP_PUBLISHED = templateParams.VUE_APP_PUBLISHED;
 
 // http://bit.ly/2P5Pzdu
 module.exports = {
+    // By default babel-loader ignores all files inside node_modules.
+    // If you want to explicitly transpile a dependency with Babel,
+    // you can list it in this option.
+    //
+    // Ist diese Option nicht aktiv kommt es z.B. zum Fehler:
+    //      Module parse failed: Unexpected token
+    //
+    // wenn 'optional chaining' oder so verwendet wird!!!
+    //
+    // https://cli.vuejs.org/config/#transpiledependencies
+    //
+    // Damit transpileDependencies funktioniert muss
+    //      @vue/cli-plugin-babel
+    //      babel-loader
+    // installiert sein
+    transpileDependencies: [
+        // can be string or regex
+        '@mmit\/.*',
+    ],
+
     configureWebpack: (config) => {
         config.entry = {
             app: './src/main.ts',
