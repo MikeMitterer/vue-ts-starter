@@ -18,6 +18,9 @@ const store: RootState & { stores: { counterStore?: CounterStore } } = {
         return store.stores.counterStore
     },
 
+    /**
+     * Called in main#mounted
+     */
     async init(): Promise<void> {
         logger.info('Initializing Root store...');
 

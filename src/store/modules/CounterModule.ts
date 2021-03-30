@@ -39,9 +39,7 @@ export default class CounterModule implements CounterStore {
     })
 
     /**
-     * Init wird durch den Create-Hook in  App.vue angestoßen
-     *
-     * action 'init' commits mutation '_init' when done
+     * Init wird durch den init im RootState angestoßen
      */
     // tslint:disable-next-line:no-empty
     public async init(): Promise<void> {
