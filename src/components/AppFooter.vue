@@ -21,6 +21,7 @@
 </template>
 
 <script lang="ts">
+import store from '@/store'
 import { CounterStore } from '@/store/interfaces/CounterStore'
 import { RootState } from '@/store/interfaces/RootState'
 import { Component, Prop, Vue } from 'vue-property-decorator'
@@ -33,16 +34,16 @@ export default class AppFooter extends Vue {
     // Component methods can be declared as instance methods
     public onClickIncrement(): void {
         this.counterStore.increment(1)
-        // this.anotherTitle = `${this.title} + ${counter.count}`;
+        // this.anotherTitle = `${this.title} + ${counter}`;
     }
 
     public onClickDecrement(): void {
         this.counterStore.decrement(1)
-        // this.anotherTitle = `${this.title} + ${counter.count}`;
+        // this.anotherTitle = `${this.title} + ${counter}`;
     }
 
     public get title_inc(): string {
-        return `${this.title} + ${this.counterStore.count}`
+        return `${this.title} + ${this.counterStore.state.count}`
     }
 
     public get published(): string {
@@ -60,17 +61,17 @@ export default class AppFooter extends Vue {
     }
 
     public get isEven(): boolean {
-        return this.counterStore.count % 2 === 0
+        return this.counterStore.state.count % 2 === 0
     }
 
     public get counter(): number {
-        return this.counterStore.count
+        return this.counterStore.state.count
     }
 
     // - Stores --------------------------------------------------------------------------------
 
     private get counterStore(): CounterStore {
-        return (this.$store.state as RootState).counterStore()
+        return (store).counterStore()
     }
 }
 </script>

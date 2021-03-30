@@ -9,6 +9,7 @@
 
 <script lang="ts">
 import HelloWorld from '@/components/HelloWorld.vue'
+import store from '@/store'
 import { CounterStore } from '@/store/interfaces/CounterStore'
 import { RootState } from '@/store/interfaces/RootState' // @ is an alias to /src
 import { Component, Vue } from 'vue-property-decorator'
@@ -20,13 +21,13 @@ import { Component, Vue } from 'vue-property-decorator'
 })
 export default class Home extends Vue {
     public get cnt(): number {
-        return this.counterStore.count
+        return this.counterStore.state.count
     }
 
     // - Stores --------------------------------------------------------------------------------
 
     private get counterStore(): CounterStore {
-        return (this.$store.state as RootState).counterStore()
+        return (store).counterStore()
     }
 }
 </script>

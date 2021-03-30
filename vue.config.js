@@ -43,7 +43,7 @@ module.exports = {
         config.entry = {
             app: './src/main.ts',
             mobile: './src/mobile.ts',
-        };
+        }
     },
     chainWebpack: (config) => {
         config.plugin('html').tap((args) => {
@@ -55,6 +55,18 @@ module.exports = {
                 });
             });
         });
+
+        // Löst das "unexpected token expected"-Problem in
+        // den Source-Files das aktuellen Moduls.
+
+        // adds rule to pass .ts files to babel-loader
+        // Weitere Infos: https://forum.vuejs.org/t/cant-set-up-babel-plugin-proposal-optional-chaining/47095/7
+        config.module
+            .rule("ts")
+            .test(/\.ts$/)
+            .use("babel-loader")
+            .loader("babel-loader")
+            .end()
     },
 
     // configure autoprefixer

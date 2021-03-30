@@ -1,48 +1,67 @@
-import { counterStore, CounterStore } from '@/store/interfaces/CounterStore'
+import { CounterState, CounterStore } from '@/store/interfaces/CounterStore'
+import Vue from 'vue'
 import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators'
 import store from '../index'
 
-@Module({ namespaced: true, name: counterStore.NAME, store })
-export default class CounterModule extends VuexModule implements CounterStore {
-    private _count = 350
+// /**
+//  * Fügt Date eine neue Funktionalität hinzu
+//  *
+//  * Weitere Infos:
+//  *      https://stackoverflow.com/a/8563517/504184
+//  */
+// interface Date { toISOString(): string }
+// if ( !Date.prototype.toISOString ) {
+//
+//         const pad = (value: number) => {
+//             let r = String(value)
+//             if ( r.length === 1 ) {
+//                 r = '0' + r;
+//             }
+//             return r;
+//         }
+//
+//         Date.prototype.toISOString = function(): string {
+//             return this.getUTCFullYear()
+//                 + '-' + pad( this.getUTCMonth() + 1 )
+//                 + '-' + pad( this.getUTCDate() )
+//                 + 'T' + pad( this.getUTCHours() )
+//                 + ':' + pad( this.getUTCMinutes() )
+//                 + ':' + pad( this.getUTCSeconds() )
+//                 + '.' + String( (this.getUTCMilliseconds() / 1000).toFixed(3) ).slice( 2, 5 )
+//                 + 'Z';
+//         };
+// }
 
-    public get count(): number {
-        return this._count
-    }
+export default class CounterModule implements CounterStore {
+    public readonly state: CounterState = Vue.observable({
+        count: 350,
+        dates: []
+    })
 
     /**
      * Init wird durch den Create-Hook in  App.vue angestoßen
      *
      * action 'init' commits mutation '_init' when done
      */
-    @Action({ commit: '_init' })
     // tslint:disable-next-line:no-empty
-    public async init(): Promise<void> {}
+    public async init(): Promise<void> {
+        setInterval(() => {
+            this.state.dates.splice(0, this.state.dates.length)
 
-    // action 'increment' commits mutation '_increment' when done with return value as payload
-    @Action({ commit: '_increment' })
-    public async increment(delta: number): Promise<number> {
-        return delta
-    }
-    // action 'decrement' commits mutation '_decrement' when done with return value as payload
-    @Action({ commit: '_decrement' })
-    public async decrement(delta: number): Promise<number> {
-        return delta
-    }
-
-    // - Keep all the Mutations private - we don't want to call Mutations directly -----------------
-
-    @Mutation
-    // tslint:disable-next-line:no-empty
-    private _init(payload?: unknown): void {}
-
-    @Mutation
-    private _increment(delta: number): void {
-        this._count += delta
+            for (let index = 0; index < 50; index++) {
+                this.state.dates.push({
+                    now: new Date().toISOString(),
+                    index
+                })
+            }
+        }, 500)
     }
 
-    @Mutation
-    private _decrement(delta: number): void {
-        this._count -= delta
+    public async increment(delta: number): Promise<void> {
+        this.state.count += delta
+    }
+
+    public async decrement(delta: number): Promise<void> {
+        this.state.count -= delta
     }
 }

@@ -9,14 +9,16 @@ Vue.config.productionTip = false
 
 new Vue({
     router,
-    store,
 
     mounted(): void {
         //
         // Hier wird der "readState" vom main-Store angestoßen...
         //
         // noinspection JSIgnoredPromiseFromCall
-        this.$store.dispatch('readyState')
+        // this.$store.dispatch('readyState')
+
+        // noinspection JSIgnoredPromiseFromCall
+        store.init()
     },
 
     // tslint:disable-next-line:typedef

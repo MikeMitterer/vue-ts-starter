@@ -29,6 +29,8 @@
     },
     "devDependencies": {
         "@babel/core": "^7.13.14",
+        "@babel/plugin-proposal-nullish-coalescing-operator": "^7.13.8",
+        "@babel/plugin-proposal-optional-chaining": "^7.13.12",
         "@babel/preset-env": "^7.13.12",
         "@babel/preset-typescript": "^7.13.0",
         "@types/google.visualization": "^0.0.64",
@@ -44,6 +46,7 @@
         "moment": "^2.27.0",
         "sass": "^1.32.8",
         "sass-loader": "^10.0.2",
+        "ts-essentials": "^7.0.1",
         "ts-jest": "26.5.4",
         "tslint-consistent-codestyle": "^1.16.0",
         "typescript": "^4.2.3",

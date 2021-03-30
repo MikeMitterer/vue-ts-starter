@@ -9,11 +9,11 @@ module.exports = {
                     // "esmodules": true,
 
                     "node": "current",
-                    "browsers": [
-                        "last 2 Chrome versions",
-                        "last 1 Safari versions",
-                        "last 1 Firefox versions"
-                    ]
+                    // "browsers": [
+                    //     "last 2 Chrome versions",
+                    //     "last 1 Safari versions",
+                    //     "last 1 Firefox versions"
+                    // ]
 
                 },
                 // Enable transformation of ES6 module syntax to another module type.
@@ -21,9 +21,23 @@ module.exports = {
                 //
                 // Muss auf "auto" stehen sonst funktioniert JEST nicht!
                 "modules": "auto"
-            }
+            },
+            '@babel/preset-typescript'
         ],
         "@babel/typescript"
+    ],
+    plugins: [
+        // '@babel/proposal-class-properties',
+        // '@babel/proposal-object-rest-spread',
+        '@babel/plugin-proposal-nullish-coalescing-operator',
+        '@babel/plugin-proposal-optional-chaining',
+        // '@babel/plugin-transform-runtime',
+        // [
+        //     'transform-inline-environment-variables',
+        //     {
+        //         include: ['NODE_ENV', 'REQUIRE_TARGET']
+        //     }
+        // ]
     ],
     // "env": {
     //     // BABEL_ENV=test <command (e.g. yarn test:unit)>

@@ -26,6 +26,7 @@
 </template>
 
 <script lang="ts">
+import store from '@/store'
 import { CounterStore } from '@/store/interfaces/CounterStore'
 import { RootState } from '@/store/interfaces/RootState'
 import { Component, Prop, Vue } from 'vue-property-decorator'
@@ -40,13 +41,13 @@ export default class AppHeader extends Vue {
     }
 
     public get counter(): number {
-        return Math.min(500, Math.max(110, this.counterStore.count))
+        return Math.min(500, Math.max(110, this.counterStore.state.count))
     }
 
     // - Stores --------------------------------------------------------------------------------
 
     private get counterStore(): CounterStore {
-        return (this.$store.state as RootState).counterStore()
+        return (store).counterStore()
     }
 }
 </script>

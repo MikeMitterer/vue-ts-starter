@@ -7,4 +7,6 @@ export interface RootState {
 
     // Sample...
     counterStore: StoreProvider<CounterStore>
+
+    init(): Promise<void>
 }

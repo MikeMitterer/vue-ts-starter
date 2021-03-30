@@ -1,14 +1,20 @@
-export const counterStore: { readonly NAME: string } = {
-    // Name muss immer gleich sein wie der Name des Moduls
-    NAME: 'counterModule'
+import { DeepReadonly } from 'ts-essentials'
+
+export interface Now {
+    now: string, index: number
+}
+
+export interface CounterState {
+    count: number
+    dates: Now[]
 }
 
 export interface CounterStore {
-    count: number
+    readonly state: DeepReadonly<CounterState>
 
     init(): Promise<void>
 
-    increment(delta: number): Promise<number>
+    increment(delta: number): Promise<void>
 
-    decrement(delta: number): Promise<number>
+    decrement(delta: number): Promise<void>
 }
