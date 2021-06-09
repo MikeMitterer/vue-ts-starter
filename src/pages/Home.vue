@@ -2,6 +2,13 @@
     <div class="home">
         <img alt="Vue logo" class="logo" src="../assets/logo.png" />
         <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+        66666666666666666666666666
+        <ul>
+            <li th:each="item, iterstat: *{data.items}"
+                th:text="*{item}"
+                th:id="|td*{iterstat.index}|">---*{item} +++++</li>
+        </ul>
+        --------------
         <h3>From Store!</h3>
         <div>Counter: {{ cnt }}</div>
     </div>

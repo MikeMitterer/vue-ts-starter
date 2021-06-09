@@ -1,5 +1,10 @@
+<!-- @ftlvariable name="data" type="at.mikemitterer.mobiad.IndexData" -->
 <!DOCTYPE html>
-<html lang="en" <%if(VUE_APP_DEV_MODE){%>devmode="true"<%}%>>
+<% if (VUE_APP_DEV_MODE) { %>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" devmode="true">
+<% } else{ %>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" devmode="false">
+<% } %>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

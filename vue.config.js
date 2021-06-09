@@ -39,6 +39,9 @@ module.exports = {
         '@mmit\/.*',
     ],
 
+    // Wird z.B. für das Host-UI verwendet
+    // outputDir: '../../../../DevJava/Production/WebAppCore/MobiAd/resources/templates',
+    
     configureWebpack: (config) => {
         config.entry = {
             app: './src/main.ts',
