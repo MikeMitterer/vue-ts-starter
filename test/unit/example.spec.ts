@@ -1,4 +1,5 @@
-import HelloWorld from '@/components/HelloWorld.vue';
+// @ts-ignore
+import HelloWorld from '@/components/HelloWorld.vue'
 import { shallowMount } from '@vue/test-utils';
 
 describe('HelloWorld.vue', () => {

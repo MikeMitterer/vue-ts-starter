@@ -35,7 +35,8 @@
             "webpack-env",
             "jest",
             "node",
-            "google.visualization"
+            "google.visualization",
+            "jest-extended"
         ],
         "paths": {
             "@/*": ["src/*"]
