@@ -1,6 +1,9 @@
 /* tslint:disable */
 /* eslint-disable no-console */
 
+// import { Workbox } from 'workbox-window'
+import { Workbox } from 'workbox-window'
+
 // import { register } from 'register-service-worker'
 //
 // const serviceWorker = "sw.js"
@@ -34,18 +37,41 @@
 // })
 // // }
 
-import { Workbox } from 'workbox-window'
-
-export let workbox: Workbox | undefined;
-
-if ("serviceWorker" in navigator) {
-    workbox = new Workbox(`${process.env.BASE_URL}sw.js`);
-    workbox.addEventListener("controlling", () => {
-        window.location.reload();
-    });
-
-    // noinspection JSIgnoredPromiseFromCall
-    workbox.register();
-} else {
-    workbox = undefined;
+interface ServiceWorkerMessage {
+    message: string;
 }
+
+// process.env.BASE_URL = /
+// console.log(`${process.env.BASE_URL}`)
+export const wb = new Workbox(`${process.env.BASE_URL}sw.js`)
+
+export const isServiceWorkerSupported: () => boolean = () => ('serviceWorker' in navigator)
+
+export const registerServiceWorker = (): void => {
+    if (isServiceWorkerSupported()) {
+        wb.register()
+            .then(() => {
+                console.log('Service Worker registration completed')
+            })
+            .catch((err) => {
+                console.error('Service Worker registration failed:', err)
+            })
+    }
+}
+
+export const sendMessageToServiceWorker = (message: ServiceWorkerMessage): Promise<unknown> => {
+    return new Promise((resolve, reject) => {
+        wb.messageSW(message).then((event: MessageEvent): void => {
+            if (event.data) {
+                if (event.data.error) {
+                    reject(event.data.error)
+                } else {
+                    resolve(event.data)
+                }
+            }
+        })
+    })
+}
+
+
+

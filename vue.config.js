@@ -2,6 +2,7 @@ const moment = require('moment')
 const package = require('./package')
 const fs = require("fs");
 const path = require('path');
+const { GenerateSW } = require("workbox-webpack-plugin");
 
 // const { BASE_PATH, SITE_ORIGIN, META } = require("./src/assets/constants.json");
 const devMode = process.env.NODE_ENV !== 'production'
@@ -21,6 +22,8 @@ process.env.VUE_APP_PUBLISHED = templateParams.VUE_APP_PUBLISHED
 
 // http://bit.ly/2P5Pzdu
 module.exports = {
+    publicPath: process.env.NODE_ENV === "development" ? "/pwa/" : "",
+    
     // By default babel-loader ignores all files inside node_modules.
     // If you want to explicitly transpile a dependency with Babel,
     // you can list it in this option.
@@ -41,6 +44,8 @@ module.exports = {
         '@mmit\/.*',
     ],
 
+
+
     // Weitere Infos:
     //      https://webpack.js.org/configuration/dev-server/#devserverhttps
     devServer: {
@@ -50,13 +55,9 @@ module.exports = {
         cert: fs.readFileSync(path.join(__dirname,".ssl/mobiad.int.pem")),
         key: fs.readFileSync(path.join(__dirname,".ssl/mobiad.int.key"))
     },
-    
-    configureWebpack: (config) => {
-        config.entry = {
-            app: './src/main.ts',
-            mobile: './src/mobile.ts'
-            // pwa: './src/registerServiceWorker.ts'
-        }
+
+    configureWebpack: {
+        plugins: [new GenerateSW()]
     },
     chainWebpack: (config) => {
         config.plugin('html').tap((args) => {
@@ -68,29 +69,30 @@ module.exports = {
                 })
             })
         })
+        // config.entry('sw').filename("../sw.js").add('./src/sw.ts')
     },
 
     // PWA-Plugin:
     //      https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa
-    pwa: {
-        name: 'My App1',
-        "display": "standalone",
-        "start_url": "/index.html",
-        themeColor: '#c84019',
-        msTileColor: '#000000',
-        appleMobileWebAppCapable: 'yes',
-        appleMobileWebAppStatusBarStyle: 'black',
-
-        // configure the workbox plugin
-        // workboxPluginMode: 'GenerateSW'
-        
-        // workboxPluginMode: "InjectManifest",
-        // workboxOptions: {
-        //      // swSrc is required in InjectManifest mode.
-        //      swSrc: './sw.js',
-        //      // swDest: 'service-worker.js',
-        // }
-    }
+    // pwa: {
+    //     name: 'My App1',
+    //     "display": "standalone",
+    //     "start_url": "/index.html",
+    //     themeColor: '#c84019',
+    //     msTileColor: '#000000',
+    //     appleMobileWebAppCapable: 'yes',
+    //     appleMobileWebAppStatusBarStyle: 'black',
+    //
+    //     // configure the workbox plugin
+    //     // workboxPluginMode: 'GenerateSW'
+    //
+    //     workboxPluginMode: "InjectManifest",
+    //     workboxOptions: {
+    //          // swSrc is required in InjectManifest mode.
+    //          swSrc: 'src/sw.js',
+    //          swDest: 'sw.js',
+    //     }
+    // }
 
     // configure autoprefixer
     // autoprefixer: {
