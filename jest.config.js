@@ -30,9 +30,7 @@ module.exports = {
   //
   // A MUST! if the following module is in ES6-Format!!!!
   //
-  transformIgnorePatterns: [
-    "<rootDir>/node_modules/(?!@mmit\/communication)"
-  ],
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!@mmit/.*)'],
 
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'

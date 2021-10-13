@@ -15,7 +15,7 @@ pipeline {
             steps {
                 timeout(time: 15, unit: 'MINUTES') {
                     ansiColor('xterm') {
-                        sh 'yarn'
+                        sh 'yarn && yarn clean'
 
                         // Repos von Amazon holen
                         // sh 'docker/_ci/run.sh --pull'
@@ -38,8 +38,9 @@ pipeline {
         stage('Test') {
             steps {
                 ansiColor('xterm') {
-                    sh 'yarn run lint'
-                    sh 'yarn run test'
+                    sh 'yarn tc'
+                    sh 'yarn lint'
+                    sh 'yarn test'
                 }
             }
         }
@@ -47,7 +48,7 @@ pipeline {
             steps {
                 timeout(time: 15, unit: 'MINUTES') {
                     ansiColor('xterm') {
-                        sh 'yarn run build:prod'
+                        sh 'yarn build:prod'
                     }
                 }
 

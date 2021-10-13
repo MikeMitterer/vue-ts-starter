@@ -1,5 +1,7 @@
 const moment = require('moment')
 const package = require('./package')
+const fs = require("fs");
+const path = require('path');
 
 // const { BASE_PATH, SITE_ORIGIN, META } = require("./src/assets/constants.json");
 const devMode = process.env.NODE_ENV !== 'production'
@@ -19,12 +21,36 @@ process.env.VUE_APP_PUBLISHED = templateParams.VUE_APP_PUBLISHED
 
 // http://bit.ly/2P5Pzdu
 module.exports = {
+    // By default babel-loader ignores all files inside node_modules.
+    // If you want to explicitly transpile a dependency with Babel,
+    // you can list it in this option.
+    //
+    // Ist diese Option nicht aktiv kommt es z.B. zum Fehler:
+    //      Module parse failed: Unexpected token
+    //
+    // wenn 'optional chaining' oder so verwendet wird!!!
+    //
+    // https://cli.vuejs.org/config/#transpiledependencies
+    //
+    // Damit transpileDependencies funktioniert muss
+    //      @vue/cli-plugin-babel
+    //      babel-loader
+    // installiert sein
+    transpileDependencies: [
+        // can be string or regex
+        '@mmit\/.*',
+    ],
+
+    // Weitere Infos:
+    //      https://webpack.js.org/configuration/dev-server/#devserverhttps
     devServer: {
         https: true,
+        // host: "localhost",
         host: "mobiad.int.mikemitterer.at",
-        cert: ".ssl/cert.pem",
-        key: ".ssl/privkey.pem"
+        cert: fs.readFileSync(path.join(__dirname,".ssl/mobiad.int.pem")),
+        key: fs.readFileSync(path.join(__dirname,".ssl/mobiad.int.key"))
     },
+    
     configureWebpack: (config) => {
         config.entry = {
             app: './src/main.ts',
