@@ -35,17 +35,13 @@
             "webpack-env",
             "jest",
             "node",
-            "google.visualization",
-            "jest-extended"
         ],
         "paths": {
             "@/*": ["src/*"]
         },
         "lib": [
             "esnext",
-            "dom",
-            "dom.iterable",
-            "scripthost",
+            "webworker",
         ],
         "plugins": [
             {
@@ -54,15 +50,7 @@
         ]
     },
     "include": [
-        "src/**/*.ts",
-        "src/**/*.tsx",
-        "src/**/*.vue",
-        "tests/**/*.ts",
-        "tests/**/*.tsx",
-        // Damit werden die images erkannt
-        "src/browser/**/*.ts",
-        "src/site/images/typings.d.ts",
-        "src/site/images"
+        "sw.ts",
     ],
     "exclude": ["node_modules", "src/sw.ts"]
 }

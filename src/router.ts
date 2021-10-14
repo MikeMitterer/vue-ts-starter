@@ -10,9 +10,6 @@ export default new Router({
     base: process.env.BASE_URL,
     routes: [
         {
-            name: 'sw',
-            path: './sw.js',
-        },        {
             name: 'home',
             path: '/',
             component: Home,

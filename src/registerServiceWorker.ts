@@ -1,7 +1,6 @@
 /* tslint:disable */
 /* eslint-disable no-console */
 
-// import { Workbox } from 'workbox-window'
 import { Workbox } from 'workbox-window'
 
 // import { register } from 'register-service-worker'
@@ -43,7 +42,7 @@ interface ServiceWorkerMessage {
 
 // process.env.BASE_URL = /
 // console.log(`${process.env.BASE_URL}`)
-export const wb = new Workbox(`${process.env.BASE_URL}sw.js`)
+export const wb = new Workbox(`${process.env.BASE_URL}service-worker.js`)
 
 export const isServiceWorkerSupported: () => boolean = () => ('serviceWorker' in navigator)
 

@@ -2,7 +2,9 @@ const moment = require('moment')
 const package = require('./package')
 const fs = require("fs");
 const path = require('path');
-const { GenerateSW } = require("workbox-webpack-plugin");
+
+// const { GenerateSW } = require("workbox-webpack-plugin");
+// const { InjectManifest } = require('workbox-webpack-plugin');
 
 // const { BASE_PATH, SITE_ORIGIN, META } = require("./src/assets/constants.json");
 const devMode = process.env.NODE_ENV !== 'production'
@@ -22,7 +24,7 @@ process.env.VUE_APP_PUBLISHED = templateParams.VUE_APP_PUBLISHED
 
 // http://bit.ly/2P5Pzdu
 module.exports = {
-    publicPath: process.env.NODE_ENV === "development" ? "/pwa/" : "",
+    // publicPath: process.env.NODE_ENV === "development" ? "/pwa/" : "",
     
     // By default babel-loader ignores all files inside node_modules.
     // If you want to explicitly transpile a dependency with Babel,
@@ -56,9 +58,13 @@ module.exports = {
         key: fs.readFileSync(path.join(__dirname,".ssl/mobiad.int.key"))
     },
 
-    configureWebpack: {
-        plugins: [new GenerateSW()]
-    },
+    // configureWebpack: {
+    //     plugins: [new InjectManifest({
+    //         swSrc: './src/sw.ts',
+    //         swDest: './sw.ts'
+    //     })]
+    // },
+
     chainWebpack: (config) => {
         config.plugin('html').tap((args) => {
             return args.map((arg) => {
@@ -74,25 +80,25 @@ module.exports = {
 
     // PWA-Plugin:
     //      https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa
-    // pwa: {
-    //     name: 'My App1',
-    //     "display": "standalone",
-    //     "start_url": "/index.html",
-    //     themeColor: '#c84019',
-    //     msTileColor: '#000000',
-    //     appleMobileWebAppCapable: 'yes',
-    //     appleMobileWebAppStatusBarStyle: 'black',
-    //
-    //     // configure the workbox plugin
-    //     // workboxPluginMode: 'GenerateSW'
-    //
-    //     workboxPluginMode: "InjectManifest",
-    //     workboxOptions: {
-    //          // swSrc is required in InjectManifest mode.
-    //          swSrc: 'src/sw.js',
-    //          swDest: 'sw.js',
-    //     }
-    // }
+    pwa: {
+        name: 'VUE TS-Starter',
+        "display": "standalone",
+        "start_url": "/index.html",
+        themeColor: '#c84019',
+        msTileColor: '#000000',
+        appleMobileWebAppCapable: 'yes',
+        appleMobileWebAppStatusBarStyle: 'black',
+
+        // configure the workbox plugin
+        // workboxPluginMode: 'GenerateSW',
+
+        // workboxPluginMode: "InjectManifest",
+        // workboxOptions: {
+        //      // swSrc is required in InjectManifest mode.
+        //      swSrc: 'src/sw.ts',
+        //      // swDest: 'sw.js',
+        // }
+    }
 
     // configure autoprefixer
     // autoprefixer: {
