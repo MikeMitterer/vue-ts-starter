@@ -3,8 +3,8 @@ const package = require('./package')
 const fs = require("fs");
 const path = require('path');
 
-// const { GenerateSW } = require("workbox-webpack-plugin");
-// const { InjectManifest } = require('workbox-webpack-plugin');
+const { GenerateSW } = require("workbox-webpack-plugin");
+const { InjectManifest } = require('workbox-webpack-plugin');
 
 // const { BASE_PATH, SITE_ORIGIN, META } = require("./src/assets/constants.json");
 const devMode = process.env.NODE_ENV !== 'production'
@@ -64,6 +64,16 @@ module.exports = {
     //         swDest: './sw.ts'
     //     })]
     // },
+
+    configureWebpack: {
+        plugins: [
+        //     new InjectManifest({
+        //     maximumFileSizeToCacheInBytes: 5000000
+        // }),
+            new GenerateSW({
+            maximumFileSizeToCacheInBytes: 5000000
+        })]
+    },
 
     chainWebpack: (config) => {
         config.plugin('html').tap((args) => {
