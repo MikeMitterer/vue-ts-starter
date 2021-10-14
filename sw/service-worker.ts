@@ -1,4 +1,5 @@
-import { precacheAndRoute } from 'workbox-precaching';
+import {registerRoute} from 'workbox-routing';
+import {StaleWhileRevalidate} from 'workbox-strategies';
 
 //
 // https://www.fabrizioduroni.it/2020/08/07/webpack-workbox-service-worker-typescript/
@@ -16,7 +17,7 @@ const OFFLINE_PAGE_NO_NETWORK_IMAGE_URL = '/assets/images/no-wifi.png'
 
 // // Fix self: https://stackoverflow.com/questions/56356655/structuring-a-typescript-project-with-workers
 declare const self: ServiceWorkerGlobalScope;
-export {};
+// export {};
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore: __WB_MANIFEST is a placeholder filled by workbox-webpack-plugin with the list of
@@ -24,9 +25,9 @@ export {};
 // precacheAndRoute(self.__WB_MANIFEST)
 
 // tslint:disable-next-line:no-console
-console.log('Hello from service-worker.js');
+console.log('Hello from service-worker.js - 1');
 
-addEventListener('install', (event: ExtendableEvent) => {
+self.addEventListener('install', (event: ExtendableEvent) => {
     const offlineUrls = [
         OFFLINE_PAGE_URL,
         OFFLINE_PAGE_NO_NETWORK_IMAGE_URL
@@ -41,5 +42,16 @@ addEventListener('install', (event: ExtendableEvent) => {
             caches.open(CACHE_OFFLINE_NAME).then((cache) => cache.addAll(offlineUrls))
         ])
     );
+    
+    // tslint:disable-next-line:no-console
+    console.log('Installed...')
 })
+
+registerRoute(
+    ({request}) => request.destination === 'script' ||
+        request.destination === 'style',
+    new StaleWhileRevalidate({
+        cacheName: 'static-resources',
+    })
+);
 

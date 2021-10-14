@@ -4,7 +4,8 @@
 
         "target": "es2020",
         "rootDir": "./",
-
+        "outDir": "../public",
+        
         // commonjs, amd, system oder es6 (= es2015), esnext
         // - commonjs ist im Starter-Template von MS
         //
@@ -50,7 +51,7 @@
         ]
     },
     "include": [
-        "sw.ts",
+        "service-worker.ts",
     ],
-    "exclude": ["node_modules", "src/sw.ts"]
+    "exclude": ["node_modules"]
 }
