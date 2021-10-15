@@ -3,16 +3,19 @@ const package = require('./package')
 const fs = require("fs")
 const path = require('path')
 
-const WorkboxPlugin = require('workbox-webpack-plugin')
+const date = moment().format('YYYY.MM.DD HH:mm')
+
+const { generateSW } = require('./.vue/pwa.config')
 
 // const { BASE_PATH, SITE_ORIGIN, META } = require("./src/assets/constants.json");
-const devMode = process.env.NODE_ENV !== 'production'
-const date = moment().format('YYYY.MM.DD HH:mm')
+const isProductionMode = process.env.NODE_ENV === 'production'
+const isDevMode = !isProductionMode
+const isAppInPWAMode = process.env.VUE_APP_USE_PWA_MODE ?? false
 
 // vue inspect zeigt die webpack.js an
 const templateParams = {
     VUE_APP_VERSION: package.version,
-    VUE_APP_DEV_MODE: devMode,
+    VUE_APP_DEV_MODE: isDevMode,
     VUE_APP_PUBLISHED: date
 }
 
@@ -20,6 +23,11 @@ const templateParams = {
 process.env.VUE_APP_VERSION = templateParams.VUE_APP_VERSION
 process.env.VUE_APP_DEV_MODE = templateParams.VUE_APP_DEV_MODE
 process.env.VUE_APP_PUBLISHED = templateParams.VUE_APP_PUBLISHED
+
+const webPackPluginsToUse = []
+if(isAppInPWAMode) {
+    webPackPluginsToUse.push( generateSW)
+}
 
 // http://bit.ly/2P5Pzdu
 module.exports = {
@@ -56,96 +64,8 @@ module.exports = {
         key: fs.readFileSync(path.join(__dirname, ".ssl/mobiad.int.key"))
     },
 
-    // configureWebpack: {
-    //     plugins: [new InjectManifest({
-    //         swSrc: './src/sw.ts',
-    //         swDest: './sw.ts'
-    //     })]
-    // },
-
     configureWebpack: {
-        plugins: [
-            //     new InjectManifest({
-            //     maximumFileSizeToCacheInBytes: 5000000
-            // }),
-
-            // Config-Options:
-            //      https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-webpack-plugin.GenerateSW#GenerateSW
-            new WorkboxPlugin.GenerateSW({
-                maximumFileSizeToCacheInBytes: 5000000,
-
-                runtimeCaching: [
-                    {
-                        handler: 'StaleWhileRevalidate',
-                        // urlPattern: /\.(?:js|css|html)$/,
-                        urlPattern: /\.(?:js|css|html)$/,
-                        options: {
-                            cacheName: 'static-assets-cache',
-                            cacheableResponse: {
-                                statuses: [0, 200]
-                            },
-                            expiration: {
-                                maxEntries: 100,
-                                maxAgeSeconds: 24 * 60 * 60 * 60
-                            }
-                        }
-                    },
-                    {
-                        handler: 'StaleWhileRevalidate',
-                        urlPattern: /^https:\/\/code.iconify.design/,
-                        // urlPattern: /\.(js)$/,
-                        options: {
-                            cacheName: 'javascript'
-                        }
-                    },
-                    // {
-                    //     handler: 'StaleWhileRevalidate',
-                    //     "request.destination": 'script',
-                    //     options: {
-                    //         cacheName: 'static-resources',
-                    //     }
-                    // },
-                    {
-                        handler: 'CacheFirst',
-                        urlPattern: /\.(?:jp?g|png|svg|gif|raw|webp)$/,
-                        options: {
-                            cacheName: 'images-assets-cache',
-                            cacheableResponse: {
-                                statuses: [200]
-                            },
-                            expiration: {
-                                maxEntries: 100,
-                                maxAgeSeconds: 24 * 60 * 60 * 180
-                            }
-                        }
-                    },
-                    {
-                        handler: 'CacheFirst',
-                        urlPattern: /\.(?:woff|woff2|eot|ttf|otf)$/,
-                        options: {
-                            cacheName: 'fonts-assets-cache',
-                            cacheableResponse: {
-                                statuses: [200]
-                            },
-                            expiration: {
-                                maxEntries: 100,
-                                maxAgeSeconds: 24 * 60 * 60 * 180
-                            }
-                        }
-                    },
-                    {
-                        // Google-Fonts
-                        urlPattern: /^https:\/\/fonts/,
-                        handler: 'StaleWhileRevalidate',
-                        options: {
-                            cacheName: 'fonts'
-                        }
-                    }
-                ],
-                clientsClaim: true,
-                skipWaiting: true,
-                cleanupOutdatedCaches: true
-            })]
+        plugins: webPackPluginsToUse
     },
 
     chainWebpack: (config) => {

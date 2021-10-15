@@ -3,9 +3,6 @@
         <div class="is-left">
             <button class="add" @click="onClickIncrement">+</button>
             <button class="subtract" v-on:click="onClickDecrement">-</button>
-            <span>Loading... / {{ title_inc || title }} </span>
-            <span v-if="isEven">even</span>
-            <span v-if="counter % 2 !== 0">odd</span>
         </div>
         <div class="is-right">
             <div class="version_block">

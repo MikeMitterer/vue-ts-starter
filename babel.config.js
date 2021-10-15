@@ -25,6 +25,21 @@ module.exports = {
         ],
         "@babel/typescript"
     ],
+    plugins: [
+        // yarn add -D "@babel/plugin-proposal-class-properties" "@babel/plugin-proposal-object-rest-spread" "@babel/plugin-transform-runtime" "@babel/plugin-proposal-object-rest-spread" "@babel/plugin-proposal-nullish-coalescing-operator" "@babel/plugin-proposal-optional-chaining" "babel-plugin-transform-inline-environment-variables"
+        '@babel/proposal-class-properties',
+        '@babel/proposal-object-rest-spread',
+        '@babel/plugin-proposal-nullish-coalescing-operator',
+        '@babel/plugin-proposal-optional-chaining',
+        '@babel/plugin-transform-runtime',
+        [
+            'transform-inline-environment-variables',
+            {
+                include: ['NODE_ENV', 'REQUIRE_TARGET']
+            }
+        ]
+    ],
+
     // "env": {
     //     // BABEL_ENV=test <command (e.g. yarn test:unit)>
     //     "test": {

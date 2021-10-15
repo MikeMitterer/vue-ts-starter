@@ -3,6 +3,9 @@
 
 import { Workbox } from 'workbox-window'
 
+const isProductionMode = process.env.NODE_ENV === 'production'
+const isDevMode = !isProductionMode
+
 // import { register } from 'register-service-worker'
 //
 // const serviceWorker = "sw.js"
@@ -40,6 +43,9 @@ interface ServiceWorkerMessage {
     message: string;
 }
 
+const isAppInPWAMode = process.env.VUE_APP_USE_PWA_MODE ?? false
+console.info(`Application is in PWAMode: ${isAppInPWAMode}`)
+
 // process.env.BASE_URL = /
 // console.log(`${process.env.BASE_URL}`)
 export const wb = new Workbox(`${process.env.BASE_URL}service-worker.js`)
@@ -47,7 +53,7 @@ export const wb = new Workbox(`${process.env.BASE_URL}service-worker.js`)
 export const isServiceWorkerSupported: () => boolean = () => ('serviceWorker' in navigator)
 
 export const registerServiceWorker = (): void => {
-    if (isServiceWorkerSupported()) {
+    if (isServiceWorkerSupported() && isAppInPWAMode) {
         wb.register()
             .then(() => {
                 console.log('Service Worker registration completed')
