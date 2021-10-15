@@ -7,6 +7,13 @@ module.exports = {
 
   preset: "ts-jest",
 
+  // A set of global variables that need to be available in all test environments
+  globals: {
+    'ts-jest': {
+      babelConfig: 'babel.config.js',
+    },
+  },
+
   moduleFileExtensions: [
     'js',
     'jsx',
@@ -35,9 +42,10 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
   },
-  snapshotSerializers: [
-    'jest-serializer-vue'
-  ],
+
+  // snapshotSerializers: [
+  //   'jest-serializer-vue'
+  // ],
 
     // The test environment that will be used for testing
     //      https://jestjs.io/docs/en/configuration.html#testenvironment-string
@@ -45,8 +53,7 @@ module.exports = {
     // testEnvironment: 'node',
 
   testMatch: [
-    '<rootDir>/tests/**/*.(spec|specs|test).(js|jsx|ts|tsx)',
-    '<rootDir>/__tests__/*.(js|jsx|ts|tsx)'
+    '<rootDir>/test/**/*.(spec|specs|test).(js|jsx|ts|tsx)',
   ],
   testURL: 'http://localhost/',
 };

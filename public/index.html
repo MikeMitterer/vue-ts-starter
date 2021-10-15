@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" <%if(VUE_APP_DEV_MODE){%>devmode="true"<%}%>>
+<% if (VUE_APP_DEV_MODE) { %>
+<html devmode="true">
+<% } else{ %>
+<html devmode="false">
+<% } %>
 <head>
     <meta charset="utf-8">
     <base href="<%= BASE_URL %>">

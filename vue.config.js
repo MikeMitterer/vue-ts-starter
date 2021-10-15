@@ -10,6 +10,7 @@ const { generateSW } = require('./.vue/pwa.config')
 // const { BASE_PATH, SITE_ORIGIN, META } = require("./src/assets/constants.json");
 const isProductionMode = process.env.NODE_ENV === 'production'
 const isDevMode = !isProductionMode
+
 const isAppInPWAMode = process.env.VUE_APP_USE_PWA_MODE ?? false
 
 // vue inspect zeigt die webpack.js an

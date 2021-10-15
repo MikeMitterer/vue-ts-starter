@@ -43,8 +43,8 @@ interface ServiceWorkerMessage {
     message: string;
 }
 
-const isAppInPWAMode = process.env.VUE_APP_USE_PWA_MODE ?? false
-console.info(`Application is in PWAMode: ${isAppInPWAMode}`)
+const isAppInPWAMode = process.env?.VUE_APP_USE_PWA_MODE === "True"
+console.info(`Application is ${isAppInPWAMode ? '' : 'NOT! '}in PWAMode`)
 
 // process.env.BASE_URL = /
 // console.log(`${process.env.BASE_URL}`)
