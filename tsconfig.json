@@ -36,8 +36,8 @@
             "jest",
             "jest-extended",
             // "node",
-            // "google.visualization",
             // "vuetify",
+            "google.visualization"
         ],
 
         // Fallback, wenn nach d.ts Files gesucht wird
