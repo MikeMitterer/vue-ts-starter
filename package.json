@@ -48,7 +48,7 @@
     "babel-jest": "26",
     "babel-loader": "^8.2.4",
     "jest": "26",
-    "jest-extended": "0.11.5",
+    "jest-extended": "^2.0.0",
     "jest-transform-stub": "^2.0.0",
     "sass": "^1.32.8",
     "sass-loader": "10.1.1",
