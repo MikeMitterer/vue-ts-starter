@@ -26,6 +26,9 @@ pipeline {
                         // Hostname richtigstellen
                         // sh 'cp -f tests/integration/test-config.linux.json tests/integration/test-config.json'
 
+                        // Zertifikate aktualisieren
+                        // sh 'rm -rf .ssl && yarn download:certs'
+
                         script {
                             // 0 - unchanged, 1 - changed
                             // Script-Logik wird mit ! umgekehrt
