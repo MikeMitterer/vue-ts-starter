@@ -29,6 +29,9 @@ pipeline {
                         // Zertifikate aktualisieren
                         sh 'rm -rf .ssl && yarn download:certs'
 
+                        // Browser-List updaten
+                        sh 'yarn run update:browser'
+                        
                         script {
                             // 0 - unchanged, 1 - changed
                             // Script-Logik wird mit ! umgekehrt
