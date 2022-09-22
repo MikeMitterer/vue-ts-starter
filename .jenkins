@@ -14,6 +14,7 @@ JENKINS_JOB_TOKEN="vue-ts-starter"
 
 # Parameter werden bei manchen builds benötigt
 JENKINS_PARAMS=(
+    "REMOVE_NODE_MODULES=true"
     "PUBLISH_TO_TESTSERVER=false"
     "delay=1"
 )
