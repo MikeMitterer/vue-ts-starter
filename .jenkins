@@ -6,7 +6,7 @@
 # ------------------------------------------------------------------------------
 
 # https://jenkins.int.mikemitterer.at:2083/job/[Full Job NAME], e.g. Scripts/job/Utils
-JENKINS_JOB_NAME="TS-MobiAd/job/VUE-TS-Starter"
+JENKINS_JOB_NAME="TS-MobiAd/job/Templates/job/VUE-TS-Starter"
 
 # by default your GIT-Origin
 # (Builds von außerhalb starten / Authentifizierungstoken)
