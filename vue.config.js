@@ -80,7 +80,6 @@ module.exports = {
     // Weitere Infos:
     //      https://webpack.js.org/configuration/dev-server/#devserverhttps
     devServer: {
-        https: true,
         // host: "localhost",
         host: "mobiad.int.mikemitterer.at",
         // cert: fs.readFileSync(path.join(__dirname, ".ssl/mobiad.int.pem")),
@@ -89,8 +88,10 @@ module.exports = {
         // diese Zertifikate können mit:
         //      yarn download:certs
         // aktualisiert werden
-        cert: fs.readFileSync(path.join(__dirname, ".ssl/fullchain.pem")),
-        key: fs.readFileSync(path.join(__dirname, ".ssl/privkey.pem"))
+        https: {
+            cert: fs.readFileSync(path.join(__dirname, ".ssl/fullchain.pem")),
+            key: fs.readFileSync(path.join(__dirname, ".ssl/privkey.pem"))
+        }
     },
 
     configureWebpack: {
