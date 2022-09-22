@@ -38,7 +38,7 @@
     "@babel/preset-env": "^7.15.8",
     "@babel/preset-typescript": "^7.15.0",
     "@mdi/font": "^6.3.95",
-    "@types/googlemaps": "^3.43.3",
+    "@types/google.visualization": "^0.0.68",
     "@types/jest": "28.1.3",
     "@types/uuid": "^8.3.1",
     "@types/websocket": "^1.0.4",

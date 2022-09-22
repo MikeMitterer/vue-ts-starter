@@ -14,6 +14,6 @@ JENKINS_JOB_TOKEN="vue-ts-starter"
 
 # Parameter werden bei manchen builds benötigt
 JENKINS_PARAMS=(
-    # "PUBLISH_TO_NMP=true"
-    # "delay=1"
+    "PUBLISH_TO_TESTSERVER=false"
+    "delay=1"
 )

@@ -8,6 +8,7 @@ pipeline {
 
     parameters {
         booleanParam(defaultValue: false, description: 'Publishes to TestServer', name: 'PUBLISH_TO_TESTSERVER')
+        booleanParam(defaultValue: false, description: 'Deletes node_modules-Folder', name: 'REMOVE_NODE_MODULES')
     }
     
     stages {
@@ -15,7 +16,11 @@ pipeline {
             steps {
                 timeout(time: 15, unit: 'MINUTES') {
                     ansiColor('xterm') {
-                        sh 'rm -rf node_modules'
+                        script {
+                            if (env.REMOVE_NODE_MODULES) {
+                                sh 'rm -rf node_modules'
+                            }
+                        }
                         
                         sh 'yarn && yarn clean'
 
