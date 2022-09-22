@@ -10,7 +10,7 @@
     "update:browser": "browserslist --update-db",
     "download:certs": "rm -rf .ssl && cert2ssl.sh -d int.mikemitterer.at",
     "build": "vue-cli-service build --mode development",
-    "test:unit": "vue-cli-service test:unit test/unit/.*",
+    "test:unit": "jest --colors test/unit",
     "lint": "tslint --project tsconfig.json",
     "deploy": "yarn version --new-version patch",
     "build:prod": "vue-cli-service build --mode production",
