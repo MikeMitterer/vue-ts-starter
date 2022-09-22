@@ -15,6 +15,8 @@ pipeline {
             steps {
                 timeout(time: 15, unit: 'MINUTES') {
                     ansiColor('xterm') {
+                        sh 'rm -rf node_modules'
+                        
                         sh 'yarn && yarn clean'
 
                         // Repos von Amazon holen
