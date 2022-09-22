@@ -7,7 +7,7 @@ module.exports = {
 
     preset: "ts-jest",
 
-    // A set of global variables that need to be available in all test environments
+    // // A set of global variables that need to be available in all test environments
     globals: {
         'ts-jest': {
             babelConfig: 'babel.config.js'
@@ -56,7 +56,7 @@ module.exports = {
     ],
 
     testEnvironmentOptions: {
-        url: 'http://localhost/'
+         url: 'http://localhost/'
     },
 
     setupFilesAfterEnv: ['<rootDir>/test/jest.setup.ts', "jest-extended/all"]
