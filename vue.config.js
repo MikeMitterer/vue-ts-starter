@@ -82,6 +82,7 @@ module.exports = {
     devServer: {
         // host: "localhost",
         host: "mobiad.int.mikemitterer.at",
+
         // cert: fs.readFileSync(path.join(__dirname, ".ssl/mobiad.int.pem")),
         // key: fs.readFileSync(path.join(__dirname, ".ssl/mobiad.int.key"))
 

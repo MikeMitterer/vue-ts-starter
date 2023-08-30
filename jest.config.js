@@ -23,13 +23,13 @@ module.exports = {
         'tsx'
     ],
     transform: {
-        '\\.jsx?$': '<rootDir>/node_modules/babel-jest',
+        '\\.jsx?$': 'babel-jest',
 
-        '^.+\\.vue$': '<rootDir>/node_modules/vue-jest',
+        '^.+\\.vue$': 'vue-jest',
 
         '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
 
-        "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest"
+        "^.+\\.(ts|tsx)$": "ts-jest"
     },
 
     // An array of regexp pattern strings that are matched against all source file paths,
