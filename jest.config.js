@@ -8,11 +8,15 @@ module.exports = {
     preset: "ts-jest",
 
     // // A set of global variables that need to be available in all test environments
-    globals: {
-        'ts-jest': {
-            babelConfig: 'babel.config.js'
-        }
-    },
+    // Define `ts-jest` config under `globals` is deprecated. Please do
+    // transform: {
+    //     <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+    // },
+    // globals: {
+    //     'ts-jest': {
+    //         babelConfig: 'babel.config.js',
+    //     },
+    // },
 
     moduleFileExtensions: [
         'js',
