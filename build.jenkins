@@ -19,6 +19,7 @@ pipeline {
                         script {
                             if (env.REMOVE_NODE_MODULES) {
                                 sh 'rm -rf node_modules'
+                                sh 'rm -f yarn.lock'
                             }
                         }
                         
