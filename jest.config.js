@@ -46,9 +46,9 @@ module.exports = {
         '^@/(.*)$': '<rootDir>/src/$1'
     },
 
-    snapshotSerializers: [
-        'jest-serializer-vue'
-    ],
+    // snapshotSerializers: [
+    //     'jest-serializer-vue'
+    // ],
 
     // The test environment that will be used for testing
     //      https://jestjs.io/docs/en/configuration.html#testenvironment-string
