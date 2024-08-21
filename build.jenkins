@@ -7,6 +7,7 @@ pipeline {
     environment { SRC_CHANGED=true }
 
     parameters {
+        booleanParam(defaultValue: false, description: 'Deletes node_modules-Folder', name: 'REMOVE_NODE_MODULES')
         booleanParam(defaultValue: false, description: 'Publishes to TestServer', name: 'PUBLISH_TO_TESTSERVER')
     }
     
@@ -15,6 +16,13 @@ pipeline {
             steps {
                 timeout(time: 15, unit: 'MINUTES') {
                     ansiColor('xterm') {
+                        script {
+                            if (env.REMOVE_NODE_MODULES) {
+                                sh 'rm -rf node_modules'
+                                sh 'rm -f yarn.lock'
+                            }
+                        }
+                        
                         sh 'yarn && yarn clean'
 
                         // Repos von Amazon holen
@@ -26,6 +34,12 @@ pipeline {
                         // Hostname richtigstellen
                         // sh 'cp -f tests/integration/test-config.linux.json tests/integration/test-config.json'
 
+                        // Zertifikate aktualisieren
+                        sh 'yarn download:certs'
+
+                        // Browser-List updaten
+                        sh 'yarn run update:browser'
+                        
                         script {
                             // 0 - unchanged, 1 - changed
                             // Script-Logik wird mit ! umgekehrt

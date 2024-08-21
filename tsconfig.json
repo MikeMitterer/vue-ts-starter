@@ -2,8 +2,8 @@
     "compilerOptions": {
         "strict": true,
 
-        "target": "es2020",
-        "rootDir": "./",
+        "target": "es6",
+        // "rootDir": "./",
 
         // commonjs, amd, system oder es6 (= es2015), esnext
         // - commonjs ist im Starter-Template von MS
@@ -34,19 +34,19 @@
         "types": [
             "webpack-env",
             "jest",
-            "node",
-            "google.visualization",
-            "jest-extended"
+            "jest-extended",
+            // "node",
+            "vuetify",
+            "google.visualization"
         ],
+
+        // Fallback, wenn nach d.ts Files gesucht wird
+        // "typeRoots": ["./src/shims-vuetify.d.ts"],
+
         "paths": {
             "@/*": ["src/*"]
         },
-        "lib": [
-            "esnext",
-            "dom",
-            "dom.iterable",
-            "scripthost",
-        ],
+        "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
         "plugins": [
             {
                 "name": "typescript-tslint-plugin"
@@ -57,6 +57,7 @@
         "src/**/*.ts",
         "src/**/*.tsx",
         "src/**/*.vue",
+        "test/**/*.ts",
         "tests/**/*.ts",
         "tests/**/*.tsx",
         // Damit werden die images erkannt
